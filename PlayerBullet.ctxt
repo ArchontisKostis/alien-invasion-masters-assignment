@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=PlayerBullet
+comment0.text=\r\n\ PlayerBullet\ \u2014\ the\ laser\ bolt\ fired\ by\ PlayerCannon.\r\n\r\n\ Travels\ straight\ upward\ at\ SPEED\ px/act.\ Removed\ when\ it\ exits\ the\ top\r\n\ of\ the\ world\ (getY()\ &lt;\ 0).\r\n\r\n\ \u2500\u2500\ Collision\ stubs\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Three\ collision\ checks\ are\ ready\ and\ clearly\ marked.\ \ Each\ is\ currently\r\n\ \ \ commented\ out\ because\ the\ target\ classes\ (Alien,\ MysteryShip,\ BunkerTile)\r\n\ \ \ don't\ exist\ yet.\ \ Uncomment\ each\ block\ as\ those\ classes\ are\ added.\r\n\r\n\ \u2500\u2500\ Sprite\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Loads\ ship/player_bullet.png\ from\ images/\ and\ scales\ it\ to\ 8\u00D728\ px.\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.3.\r\n
+comment1.params=
+comment1.target=PlayerBullet()
+comment2.params=
+comment2.target=void\ act()
+numComments=3

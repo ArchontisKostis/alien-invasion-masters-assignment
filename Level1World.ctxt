@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Level1World
+comment0.text=\r\n\ Level1World\ \u2014\ Earth\ Orbit,\ the\ first\ gameplay\ level.\r\n\r\n\ \u2500\u2500\ What's\ in\ this\ world\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Background\ \:\ procedural\ deep-space\ starfield\ (bg_level1.png\ used\ if\ present)\r\n\ \ \ HUD\ strip\ \ \:\ inherited\ from\ GameWorld\ \u2014\ score\ /\ hi\ /\ level\ at\ the\ top\r\n\ \ \ Life\ icons\ \:\ 3\ \u00D7\ LifeIcon\ actors,\ top-right\ corner\r\n\ \ \ Player\ \ \ \ \ \:\ PlayerCannon\ at\ (400,\ 540)\r\n\ \ \ AlienGrid\ \ \:\ invisible\ manager\ at\ (-1,\ -1)\r\n\ \ \ Aliens\ \ \ \ \ \:\ 55\ total\ \u2014\ 11\ cols\ \u00D7\ 5\ rows\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Rows\ 0-1\ \ HardAlien\ (30\ pts)\ \ hard_alien_0/1.png\ \ \u2014\ yellow/gold\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Rows\ 2-3\ \ MidAlien\ \ (20\ pts)\ \ med_alien_0/1.png\ \ \ \u2014\ cyan\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Row\ \ 4\ \ \ \ EasyAlien\ (10\ pts)\ \ easy_alien_0/1.png\ \ \u2014\ lime\ green\r\n\ \ \ Bunkers\ \ \ \ \:\ 4\ clusters\ at\ Y\=460\ (8\u00D73\ tiles\ each,\ 3\ hp/tile)\r\n\ \ \ Music\ \ \ \ \ \ \:\ music_level1.wav\ loops\ while\ running\r\n\r\n\ \u2500\u2500\ Alien\ grid\ layout\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ 11\ columns\ \u00D7\ 5\ rows\ \=\ 55\ aliens.\r\n\ \ \ Column\ X\ \=\ 55\ +\ col\ *\ 60\ \ \ \ (col\ 0-10)\ \u2192\ centres\ at\ 55,\ 115,\ \u2026\ 655\r\n\ \ \ Row\ \ \ \ Y\ \=\ 80\ +\ row\ *\ 36\ \ \ \ (row\ 0-4)\ \ \u2192\ tops\ at\ 80,\ 116,\ 152,\ 188,\ 224\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A74\ +\ \u00A76\ +\ \u00A77.\r\n
+comment1.params=
+comment1.target=Level1World()
+comment2.params=
+comment2.target=void\ buildLevel()
+comment3.params=count
+comment3.target=void\ addTwinklingStars(int)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ spawnAlienGrid()
+comment5.text=\r\n\ Spawn\ 55\ aliens\ in\ a\ 5-row\ \u00D7\ 11-column\ formation.\r\n\r\n\ Row\ allocation\:\r\n\ \ \ Rows\ 0-1\ \ \u2192\ HardAlien\ \ (30\ pts)\ \ gold\r\n\ \ \ Rows\ 2-3\ \ \u2192\ MidAlien\ \ \ (20\ pts)\ \ cyan\r\n\ \ \ Row\ \ 4\ \ \ \ \u2192\ EasyAlien\ \ (10\ pts)\ \ green\r\n\r\n\ NOTE\:\ mid-alien\ asset\ files\ are\ named\ "med_alien_*"\ (not\ "mid_alien_*").\r\n
+comment6.params=row
+comment6.target=Alien\ createAlien(int)
+comment7.params=originX\ originY\ hp
+comment7.target=void\ buildBunker(int,\ int,\ int)
+comment7.text=\r\n\ Build\ a\ classic\ Space\ Invaders\ bunker\ from\ BunkerTile\ actors.\r\n\r\n\ Shape\ (0\=gap,\ 1\=tile)\:\r\n\ \ \ {\ 0,1,1,1,1,1,1,0\ }\r\n\ \ \ {\ 1,1,1,1,1,1,1,1\ }\r\n\ \ \ {\ 1,1,0,0,0,0,1,1\ }\ \ \u2190\ notch\ for\ the\ player\ cannon\r\n\r\n\ Each\ tile\ is\ 8\u00D78\ px.\r\n
+comment8.params=
+comment8.target=greenfoot.GreenfootImage\ buildStarfield()
+comment8.text=\r\n\ Load\ bg_level1.png\ if\ available,\ otherwise\ generate\ a\ procedural\ starfield.\r\n\r\n\ Procedural\ version\:\r\n\ \ \ \u2022\ 180\ stars,\ brightness\ 120\u2013255,\ size\ 1\ or\ 2\ px,\ fixed\ seed.\r\n\ \ \ \u2022\ Faint\ purple\ nebula\ smear\ in\ the\ top-right\ corner.\r\n\ \ \ \u2022\ Near-black\ background\:\ Color(3,\ 2,\ 12).\r\n
+numComments=9

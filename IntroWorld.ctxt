@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=IntroWorld
+comment0.text=\r\n\ IntroWorld\ \u2014\ the\ game's\ welcome\ /\ title\ screen.\r\n
+comment1.params=
+comment1.target=IntroWorld()
+comment2.params=
+comment2.target=void\ onActivate()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ started()
+comment5.params=
+comment5.target=void\ stopped()
+comment6.params=
+comment6.target=void\ drawTitle()
+comment7.params=
+comment7.target=void\ drawInstructions()
+comment8.params=
+comment8.target=void\ startMusicLoopIfNeeded()
+comment9.params=
+comment9.target=void\ stopMusic()
+numComments=10
