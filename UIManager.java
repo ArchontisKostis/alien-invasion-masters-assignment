@@ -19,7 +19,7 @@ import java.util.List;
  *   HIDDEN       No overlay; game runs normally.
  *   PAUSE        Pause menu — Resume / Settings / How To Play / Credits /
  *                             Cheats / Quit
- *   SETTINGS     Music vol, SFX vol, Difficulty
+ *   SETTINGS     Music vol, SFX vol
  *   HOW_TO_PLAY  Key instructions drawn directly on the overlay
  *   CREDITS      Author & asset credits drawn on the overlay
  *   CHEATS       Invincibility, Rapid Fire, Kill All, Skip Level
@@ -297,10 +297,6 @@ public class UIManager extends Actor
         // SFX Volume row
         drawLabel(img, "SFX VOLUME", PNL_CX, PNL_Y + 160);
         drawVolumeBar(img, GameSettings.getSfxVolume(), PNL_Y + 185);
-
-        // Difficulty row
-        drawLabel(img, "DIFFICULTY", PNL_CX, PNL_Y + 240);
-        // Difficulty labels drawn alongside the buttons (button positions below)
     }
 
     /** Draw a 10-segment volume bar centred at (PNL_CX, y). */
@@ -347,10 +343,6 @@ public class UIManager extends Actor
         drawBody(img, "Mid Alien    20 pts",     x, y); y += dy;
         drawBody(img, "Hard Alien   30 pts",     x, y); y += dy;
         // Mystery Ship (future): drawBody(img, "Mystery Ship  50-300 pts", x, y);
-
-        y += 10;
-        drawSmallLabel(img, "TIPS", PNL_CX, y); y += 24;
-        drawBody(img, "Shoot fast — aliens speed up!", x, y);
     }
 
     // ── Credits content ───────────────────────────────────────────────────────
@@ -455,20 +447,10 @@ public class UIManager extends Actor
         int sfxY = PNL_Y + 185 - smallH / 2 + 6;
         addBtn("-", barLeft  - smallW / 2 - 6, sfxY, smallW, smallH, 14,
                () -> { GameSettings.setSfxVolume(GameSettings.getSfxVolume() - 10);
-                        switchTo(State.SETTINGS); });
+                        applySfxVolume(); switchTo(State.SETTINGS); });
         addBtn("+", barRight + smallW / 2 + 6, sfxY, smallW, smallH, 14,
                () -> { GameSettings.setSfxVolume(GameSettings.getSfxVolume() + 10);
-                        switchTo(State.SETTINGS); });
-
-        // Difficulty
-        int diffY = PNL_Y + 268;
-        int diffW = 76;
-        addBtn("EASY",   PNL_X + 46,  diffY, diffW, 30, 13,
-               () -> { GameSettings.setDifficulty(0); switchTo(State.SETTINGS); });
-        addBtn("NORMAL", PNL_CX,      diffY, diffW, 30, 13,
-               () -> { GameSettings.setDifficulty(1); switchTo(State.SETTINGS); });
-        addBtn("HARD",   PNL_X + PNL_W - 46, diffY, diffW, 30, 13,
-               () -> { GameSettings.setDifficulty(2); switchTo(State.SETTINGS); });
+                        applySfxVolume(); switchTo(State.SETTINGS); });
 
         // Back
         buildBackButton(PNL_BOT - 48);
@@ -484,11 +466,6 @@ public class UIManager extends Actor
         String invLabel = "INVINCIBLE: " + (GameSettings.isCheatInvincible() ? "ON " : "OFF");
         addBtn(invLabel, BTN_X, y, BTN_W, BTN_H,
                () -> { GameSettings.toggleCheatInvincible(); switchTo(State.CHEATS); });
-        y += dy;
-
-        String rfLabel = "RAPID FIRE: " + (GameSettings.isCheatRapidFire() ? "ON " : "OFF");
-        addBtn(rfLabel, BTN_X, y, BTN_W, BTN_H,
-               () -> { GameSettings.toggleCheatRapidFire(); switchTo(State.CHEATS); });
         y += dy;
 
         addBtn("KILL ALL ALIENS", BTN_X, y, BTN_W, BTN_H, () -> {
@@ -564,6 +541,16 @@ public class UIManager extends Actor
         World w = getWorld();
         if (w instanceof GameWorld) {
             ((GameWorld) w).applyMusicVolume(GameSettings.getMusicVolume());
+        }
+    }
+
+    // ── SFX volume application ────────────────────────────────────────────────
+
+    private void applySfxVolume()
+    {
+        World w = getWorld();
+        if (w instanceof GameWorld) {
+            ((GameWorld) w).applySfxVolume(GameSettings.getSfxVolume());
         }
     }
 
