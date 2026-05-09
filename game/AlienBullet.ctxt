@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=AlienBullet
+comment0.text=\r\n\ AlienBullet\ \u2014\ the\ zigzag\ bomb\ fired\ by\ the\ alien\ formation.\r\n\r\n\ \u2500\u2500\ Movement\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Falls\ straight\ down\ at\ 3.5\ px/act.\ Removed\ when\ it\ exits\ the\ bottom.\r\n\r\n\ \u2500\u2500\ Animation\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Two-frame\ zigzag\ flicker\ (threshold\ 2\ \=\ 30\ fps\ flicker)\:\r\n\ \ \ \ \ Frame\ 0\:\ leans\ left\ \ \u2014\ aliens/alien_bomp_0.png\r\n\ \ \ \ \ Frame\ 1\:\ mirror\ of\ frame\ 0\ (leans\ right)\r\n\r\n\ \u2500\u2500\ Collisions\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ PlayerCannon\ \u2192\ GameWorld.playerHit()\ \ (full\ death\ sequence)\r\n\ \ \ BunkerTile\ \ \ \u2192\ BunkerTile.damage()\ \ \ (damages\ bunker,\ plays\ bunker_hit.wav)\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.9.\r\n
+comment1.params=
+comment1.target=AlienBullet()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=greenfoot.GreenfootImage[]\ buildFrames()
+numComments=4

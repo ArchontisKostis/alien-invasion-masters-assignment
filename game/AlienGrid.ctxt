@@ -1,0 +1,30 @@
+#BlueJ class context
+comment0.target=AlienGrid
+comment0.text=\r\n\ AlienGrid\ \u2014\ invisible\ manager\ actor\ that\ drives\ the\ alien\ formation.\r\n\r\n\ \u2500\u2500\ Responsibilities\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ \u2022\ March\ the\ formation\ left/right\ at\ a\ speed\ that\ increases\ as\ aliens\ are\ killed.\r\n\ \ \ \u2022\ Detect\ wall\ collision\ \u2192\ reverse\ direction\ \u2192\ drop\ all\ aliens\ one\ row.\r\n\ \ \ \u2022\ Play\ the\ 4-step\ march\ sound\ cycle\ (via\ GameWorld.playMarchSound())\ on\ each\ drop.\r\n\ \ \ \u2022\ Check\ the\ invasion\ line\ (Y\ \u2265\ 480)\ after\ each\ drop\ \u2192\ triggerGameOver\ if\ breached.\r\n\ \ \ \u2022\ Periodically\ fire\ an\ AlienBullet\ from\ a\ random\ alien.\r\n\ \ \ \u2022\ Track\ how\ many\ aliens\ remain;\ call\ triggerLevelClear()\ when\ count\ hits\ 0.\r\n\r\n\ \u2500\u2500\ Progressive\ difficulty\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Every\ 10\ aliens\ killed,\ speed\ increases\ by\ 0.2\ px/act\ in\ Level\ 1\ and\r\n\ \ \ 0.05\ px/act\ in\ Level\ 2.\r\n\ \ \ Every\ 5\ aliens\ killed,\ bomb\ interval\ decreases\ by\ 5\ acts\r\n\ \ \ (floors\:\ 35\ in\ Level\ 1,\ 48\ in\ Level\ 2).\r\n\r\n\ \u2500\u2500\ Placement\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Place\ at\ (-1,\ -1)\ so\ it's\ off-screen\ and\ never\ visible.\r\n\ \ \ setImage(new\ GreenfootImage(1,1))\ keeps\ Greenfoot\ happy.\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.4.\r\n
+comment1.params=level
+comment1.target=AlienGrid(int)
+comment1.text=\r\n\ \ \ @param\ level\ \ 1\ \=\ Earth\ Orbit,\ 2\ \=\ Lunar\ Surface\ (slower\ start,\ still\ tougher\ overall).\r\n
+comment10.params=interval
+comment10.target=int\ adjustedBombInterval(int)
+comment11.params=
+comment11.target=void\ alienKilled()
+comment11.text=\r\n\ Called\ by\ Alien.die()\ each\ time\ an\ alien\ is\ destroyed.\r\n\ Triggers\ the\ level-clear\ transition\ when\ the\ last\ alien\ is\ killed.\r\n
+comment12.params=
+comment12.target=java.util.List\ getAliens()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveFormation()
+comment4.params=
+comment4.target=void\ checkWallAndDrop()
+comment5.params=aliens
+comment5.target=void\ dropAllAliens(java.util.List)
+comment6.params=
+comment6.target=void\ tickBombTimer()
+comment7.params=
+comment7.target=void\ fireAlienBomb()
+comment8.params=aliens
+comment8.target=Alien\ pickShooterWeighted(java.util.List)
+comment9.params=
+comment9.target=void\ scaleSpeedAndBombs()
+numComments=13

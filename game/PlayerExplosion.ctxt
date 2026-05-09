@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=PlayerExplosion
+comment0.text=\r\n\ PlayerExplosion\ \u2014\ 5-frame\ large\ explosion\ for\ player\ ship\ death.\r\n\r\n\ \u2500\u2500\ Frame\ timeline\ (FRAME_THRESHOLD\ \=\ 4\ acts\ each,\ total\ 20\ acts\ \u2248\ 0.33\ s)\ \u2500\u2500\r\n\ \ \ Frame\ 0\ (acts\ 0-3)\:\ \ White\ flash\ \u2014\ blinding,\ fills\ 64\u00D748\ area\r\n\ \ \ Frame\ 1\ (acts\ 4-7)\:\ \ Yellow-white\ fireball,\ hull\ breaking\ apart\r\n\ \ \ Frame\ 2\ (acts\ 8-11)\:\ Orange\ fireball,\ debris\ chunks\ flying\ outward\r\n\ \ \ Frame\ 3\ (acts\ 12-15)\:\ Red-orange\ smoke,\ fragments\ scattered\r\n\ \ \ Frame\ 4\ (acts\ 16-19)\:\ Dark\ grey\ smoke\ fading,\ just\ embers\r\n\ \ \ After\ act\ 20\:\ actor\ removed\r\n\r\n\ \u2500\u2500\ Sprites\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Tries\ to\ load\ ship/explosion_player_0.png\ \u2192\ ship/explosion_player_4.png.\r\n\ \ \ Falls\ back\ to\ 5\ code-drawn\ 64\u00D748\ frames\ if\ files\ are\ missing.\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.12.\r\n
+comment1.params=
+comment1.target=PlayerExplosion()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=greenfoot.GreenfootImage[]\ loadFrames()
+comment4.params=frame
+comment4.target=greenfoot.GreenfootImage\ buildPlayerExplosionFrame(int)
+comment4.text=\r\n\ Code-drawn\ 64\u00D748\ player\ explosion\ frames.\r\n\ \ \ 0\:\ white\ flash\r\n\ \ \ 1\:\ yellow-white\ fireball\r\n\ \ \ 2\:\ orange\ fireball\ +\ debris\r\n\ \ \ 3\:\ red-orange\ smoke\ +\ fragments\r\n\ \ \ 4\:\ fading\ grey\ smoke\r\n
+numComments=5

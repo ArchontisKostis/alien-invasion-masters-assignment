@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=BackgroundMusic
+comment0.text=\r\n\ BackgroundMusic\ \u2014\ global\ guard\ to\ ensure\ only\ one\ BGM\ loop\ plays\ at\ a\ time.\r\n
+comment1.params=
+comment1.target=BackgroundMusic()
+comment2.params=sound\ volume
+comment2.target=void\ playLoop(greenfoot.GreenfootSound,\ int)
+comment2.text=\r\n\ Start\ looping\ the\ provided\ track,\ stopping\ any\ previous\ looping\ BGM\ first.\r\n
+comment3.params=sound
+comment3.target=void\ stop(greenfoot.GreenfootSound)
+comment3.text=\r\n\ Stop\ this\ specific\ track.\ Clears\ global\ pointer\ if\ it\ was\ the\ active\ loop.\r\n
+comment4.params=
+comment4.target=void\ stopCurrent()
+comment4.text=\r\n\ Stop\ whichever\ track\ is\ currently\ registered\ as\ active\ BGM.\r\n
+numComments=5

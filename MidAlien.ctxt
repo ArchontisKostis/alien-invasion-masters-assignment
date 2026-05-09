@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=MidAlien
-comment0.text=\r\n\ MidAlien\ \u2014\ middle\ rows\ (rows\ 2\ &\ 3),\ 20\ points.\r\n\r\n\ Crab-shaped\ alien\ (cyan).\r\n\ \ \ Frame\ 0\:\ claws\ bent\ inward/up\r\n\ \ \ Frame\ 1\:\ claws\ extended\ outward\r\n\r\n\ NOTE\:\ asset\ filename\ is\ "med_alien_*"\ (not\ "mid_alien_*")\ \u2014\ matches\ actual\ files.\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.7.\r\n
-comment1.params=
-comment1.target=MidAlien()
-numComments=2

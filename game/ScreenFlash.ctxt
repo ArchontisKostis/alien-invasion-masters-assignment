@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=ScreenFlash
+comment0.text=\r\n\ ScreenFlash\ \u2014\ draws\ a\ white\ semi-transparent\ overlay\ on\ the\ world\ background\r\n\ for\ 5\ acts\ (~83\ ms),\ then\ restores\ the\ original\ background.\r\n\r\n\ Creates\ the\ "screen\ flash"\ hit-feedback\ effect\ when\ the\ player\ is\ killed.\r\n\ This\ is\ a\ pure\ visual\ actor\:\ it\ has\ no\ collision\ behaviour\ and\ no\ visible\ sprite.\r\n\ The\ effect\ is\ baked\ directly\ onto\ the\ world\ background\ image.\r\n\r\n\ \u2500\u2500\ Usage\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ addObject(new\ ScreenFlash(),\ 400,\ 300);\ \ \ //\ position\ doesn't\ matter\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.14.\r\n
+comment1.params=w
+comment1.target=void\ addedToWorld(greenfoot.World)
+comment2.params=
+comment2.target=void\ act()
+numComments=3

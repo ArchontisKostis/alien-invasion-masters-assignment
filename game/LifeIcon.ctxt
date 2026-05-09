@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=LifeIcon
+comment0.text=\r\n\ LifeIcon\ \u2014\ a\ small\ ship\ silhouette\ shown\ in\ the\ top-right\ HUD\ corner.\r\n\r\n\ Three\ icons\ are\ added\ to\ the\ world\ when\ a\ level\ starts.\r\n\ GameWorld.playerHit()\ removes\ one\ icon\ (rightmost\ first)\ every\ time\ the\r\n\ player's\ ship\ is\ destroyed.\r\n\r\n\ No\ act()\ is\ needed\ \u2014\ the\ icon\ is\ a\ completely\ static\ HUD\ element.\r\n\r\n\ \u2500\u2500\ Sprite\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Tries\ to\ load\ player_life_icon.png\ (24\u00D714\ px)\ from\ images/.\r\n\ \ \ Falls\ back\ to\ a\ code-drawn\ miniature\ version\ of\ PlayerCannon\ if\ missing.\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A711.\r\n
+comment1.params=
+comment1.target=LifeIcon()
+comment2.params=
+comment2.target=greenfoot.GreenfootImage\ loadOrBuild()
+comment3.params=
+comment3.target=greenfoot.GreenfootImage\ buildIconImage()
+comment3.text=\r\n\ Code-drawn\ 24\u00D714\ miniature\ ship,\ matching\ PlayerCannon's\ colour\ palette.\r\n\r\n\ \ \ Y\ \ 0-2\ \ Mini\ cannon\ barrel\ \ (centre,\ 4\ px\ wide)\r\n\ \ \ Y\ \ 3-7\ \ Mini\ body\r\n\ \ \ Y\ \ 7-10\ Mini\ wings\ (left\ x\ 1-6,\ right\ x\ 17-22)\r\n\ \ \ Y\ 10-13\ Mini\ engine\ nozzles\ (cyan)\r\n
+numComments=4

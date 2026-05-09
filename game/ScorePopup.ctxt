@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ScorePopup
+comment0.text=\r\n\ ScorePopup\ \u2014\ floating\ "+N"\ label\ that\ rises\ and\ fades\ after\ an\ alien\ is\ killed.\r\n\r\n\ \u2500\u2500\ Behaviour\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Rises\:\ \ 0.6\ px/act\ upward\ (total\ \u2248\ 18\ px\ over\ 30\ acts)\r\n\ \ \ Fades\:\ \ alpha\ 255\ \u2192\ 0\ linearly\ over\ 30\ acts\r\n\ \ \ Removed\ automatically\ after\ LIFETIME\ acts.\r\n\r\n\ \u2500\u2500\ Trigger\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Spawned\ by\ PlayerBullet\ after\ a\ kill,\ and\ by\ MysteryShip.hit().\r\n\ \ \ Shows\ "+10",\ "+20",\ "+30",\ "+50",\ "+100",\ "+150"\ etc.\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.15.\r\n
+comment1.params=value
+comment1.target=ScorePopup(int)
+comment2.params=w
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=alpha
+comment4.target=void\ updateImage(int)
+numComments=5

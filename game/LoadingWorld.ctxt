@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=LoadingWorld
+comment0.text=\r\n\ LoadingWorld\ \u2014\ a\ simple\ loading\ screen\ displayed\ between\ levels\ or\ before\ the\ game\ starts.\r\n\ \r\n\ Shows\ a\ loading\ animation\ for\ a\ brief\ moment\ before\ transitioning\ to\ the\ next\ world.\r\n\ Displays\ a\ "Loading..."\ message\ with\ animated\ dots.\r\n\ \r\n\ Usage\:\r\n\ \ \ Greenfoot.setWorld(new\ LoadingWorld(new\ Level1World()));\r\n\ \ \ Greenfoot.setWorld(new\ LoadingWorld(new\ Level2World()));\r\n
+comment1.params=nextWorld
+comment1.target=LoadingWorld(greenfoot.World)
+comment1.text=\r\n\ Creates\ a\ loading\ screen\ that\ will\ transition\ to\ the\ given\ world.\r\n\ \r\n\ @param\ nextWorld\ The\ world\ to\ display\ after\ the\ loading\ screen.\r\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ drawLoadingScreen()
+comment4.params=
+comment4.target=greenfoot.GreenfootImage\ buildBackground()
+numComments=5

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=GameOverWorld
+comment0.text=\r\n\ GameOverWorld\ \u2014\ the\ end\ screen\ shown\ after\ the\ player\ wins\ or\ loses.\r\n\r\n\ \u2500\u2500\ Win\ \ (win\ \=\ true)\ \ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Heading\:\ \ "EARTH\ \ DEFENDED\!"\ in\ bright\ green\r\n\ \ \ Music\:\ \ \ \ none\ (transition\ cue\ is\ handled\ by\ GameWorld\ using\ the\ real\ files\ in\ sounds/)\r\n\ \ \ Background\:\ bg_intro.png\ reused\ (dark\ space\ feel)\r\n\r\n\ \u2500\u2500\ Lose\ (win\ \=\ false)\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ Heading\:\ \ "GAME\ \ OVER"\ in\ bright\ red\r\n\ \ \ Music\:\ \ \ \ none\ (transition\ cue\ is\ handled\ by\ GameWorld\ using\ the\ real\ files\ in\ sounds/)\r\n\ \ \ Background\:\ bg_gameover.png\ (dark\ red\ space)\ or\ procedural\ red\ starfield\r\n\r\n\ \u2500\u2500\ Controls\ \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n\ \ \ R\ \u2014\ reset\ score,\ return\ to\ IntroWorld,\ start\ a\ new\ game.\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A76.\r\n
+comment1.params=finalScore\ win
+comment1.target=GameOverWorld(int,\ boolean)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=text\ size\ colour\ y
+comment3.target=void\ drawCentred(java.lang.String,\ int,\ greenfoot.Color,\ int)
+comment3.text=Draw\ text\ horizontally\ centred\ at\ Y\=y\ on\ the\ background.
+comment4.params=win
+comment4.target=greenfoot.GreenfootImage\ buildBackground(boolean)
+comment4.text=Build\ the\ background\ \u2014\ PNG\ if\ present,\ procedural\ fallback\ otherwise.
+numComments=5
