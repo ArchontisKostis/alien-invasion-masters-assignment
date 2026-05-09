@@ -216,6 +216,19 @@ public abstract class GameWorld extends World
         } catch (Exception ignored) {}
     }
 
+    /**
+     * For consistency with music volume control.
+     * SFX volume is automatically applied in playSound() and playFirstAvailableSound().
+     * This method is here for future use if per-clip volume control is needed.
+     *
+     * @param vol  0-100
+     */
+    public void applySfxVolume(int vol)
+    {
+        // SFX volume is applied at playback time, not stored in a sound object.
+        // This method exists for API consistency and future extension.
+    }
+
     // ── Abstract — subclasses must implement ──────────────────────────────────
 
     /**
@@ -249,16 +262,47 @@ public abstract class GameWorld extends World
      *   Centre — high score
      *   Right  — level number  (life icons are Actor objects, not drawn here)
      *
+     * Tiles the scoreboard background graphics (scaled to 32x32) horizontally
+     * across the HUD bar, then draws the HUD text on top.
+     *
      * Override to add level-specific HUD elements (e.g., mystery-ship indicator).
      */
     protected void updateHUD()
     {
         GreenfootImage bg = getBackground();
+        int hudHeight = 32;
+        int tileSize = 32;  // Tiles scaled from 64x64 to 32x32
+        int bgWidth = getWidth();
 
-        // Black bar behind all HUD text
-        bg.setColor(Color.BLACK);
-        bg.fillRect(0, 0, getWidth(), 32);
+        // Load and scale tile images (64x64 → 32x32)
+        GreenfootImage tileStart = new GreenfootImage("ui/score/score_tile_start_left.png");
+        tileStart.scale(tileSize, hudHeight);
 
+        GreenfootImage tile0 = new GreenfootImage("ui/score/score_tile_0.png");
+        tile0.scale(tileSize, hudHeight);
+
+        GreenfootImage tile2 = new GreenfootImage("ui/score/score_tile_2.png");
+        tile2.scale(tileSize, hudHeight);
+
+        GreenfootImage tileEnd = new GreenfootImage("ui/score/score_tile_end_right.png");
+        tileEnd.scale(tileSize, hudHeight);
+
+        // Draw left cap
+        bg.drawImage(tileStart, 0, 0);
+
+        // Tile the middle section, alternating between tile_0 and tile_2
+        int x = tileSize;
+        boolean useTile0 = true;
+        while (x < bgWidth - tileSize) {
+            bg.drawImage(useTile0 ? tile0 : tile2, x, 0);
+            x += tileSize;
+            useTile0 = !useTile0;  // Alternate tiles
+        }
+
+        // Draw right cap
+        bg.drawImage(tileEnd, bgWidth - tileSize, 0);
+
+        // Draw HUD text on top
         drawHUDText("SCORE: " + String.format("%05d", ScoreManager.getScore()),  10,  7);
         drawHUDText("HI:    " + String.format("%05d", ScoreManager.getHighScore()), 310, 7);
         drawHUDText("LEVEL: " + level, 600, 7);
@@ -405,7 +449,7 @@ public abstract class GameWorld extends World
     }
 
     /**
-     * Play a one-shot sound effect.
+     * Play a one-shot sound effect with SFX volume setting.
      * Silently skips if the file is missing — no NullPointerException.
      *
      * @param filename  e.g. "laser.wav"
@@ -413,7 +457,9 @@ public abstract class GameWorld extends World
     public static void playSound(String filename)
     {
         try {
-            Greenfoot.playSound(filename);
+            GreenfootSound sound = new GreenfootSound(filename);
+            sound.setVolume(Math.max(0, Math.min(100, GameSettings.getSfxVolume())));
+            sound.play();
         } catch (Exception e) {
             // Sound file not yet in sounds/ folder — skip silently
         }
@@ -421,13 +467,16 @@ public abstract class GameWorld extends World
 
     /**
      * Play the first sound in the list that actually exists on disk.
+     * Respects the current SFX volume setting.
      * Useful for cues that have no dedicated effect file in sounds/ yet.
      */
     protected static void playFirstAvailableSound(String... filenames)
     {
         for (String filename : filenames) {
             try {
-                new GreenfootSound(filename).play();
+                GreenfootSound sound = new GreenfootSound(filename);
+                sound.setVolume(Math.max(0, Math.min(100, GameSettings.getSfxVolume())));
+                sound.play();
                 return;
             } catch (Exception ignored) {}
         }
