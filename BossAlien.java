@@ -141,8 +141,8 @@ public class BossAlien extends Actor
         if (w == null) return;
 
         w.removeObject(pb);
-        // Each player bullet deals 5 damage to the boss
-        hp = Math.max(0, hp - 5);
+        // Each player bullet deals 2 damage to the boss
+        hp = Math.max(0, hp - 2);
 
         // start hit feedback
         hitTimer = HIT_DURATION;
