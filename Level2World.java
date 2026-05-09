@@ -8,7 +8,7 @@ import greenfoot.*;
  *   Alien skins: same aliens as Level 1
  *   AlienGrid  : tuned to be less punishing than before (slower pressure ramp)
  *   BunkerTile : 3 hit-points per tile to keep shields viable
- *   MysteryShip: spawns every 20–35 s, worth 50/100/150 pts hidden value
+ *   (MysteryShip removed)
  *
  * ── Implementation status ────────────────────────────────────────────────────
  *   Player mechanics: ✓ (inherited from GameWorld)
@@ -19,8 +19,7 @@ import greenfoot.*;
 public class Level2World extends GameWorld
 {
     private static final int TWINKLE_STAR_COUNT = 100;
-    private int mysteryShipTimer = 0;
-    private int mysteryShipSpawnInterval;   // random 20-35 seconds = 1200-2100 acts
+    // MysteryShip removed: spawn timer and related logic deleted
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -64,8 +63,7 @@ public class Level2World extends GameWorld
         // 8. Register alien count for win condition
         setAlienCount(55);
 
-        // 9. Initialize MysteryShip spawn timer (random interval 20-35 seconds)
-        randomizeMysteryShipSpawn();
+        // 9. MysteryShip removed (no spawn)
 
         // 10. Background music (starts on Run via GameWorld.started())
         bgMusic = loadSound("music_level2.wav");
@@ -80,28 +78,7 @@ public class Level2World extends GameWorld
     public void act()
     {
         super.act();
-        if (GameSettings.isPaused()) return;
-
-        // Tick mystery ship spawn timer
-        mysteryShipTimer--;
-        if (mysteryShipTimer <= 0) {
-            spawnMysteryShip();
-            randomizeMysteryShipSpawn();
-        }
-    }
-
-    private void randomizeMysteryShipSpawn()
-    {
-        // 20-35 seconds at 60 fps = 1200-2100 acts
-        mysteryShipTimer = 1200 + Greenfoot.getRandomNumber(901);
-    }
-
-    private void spawnMysteryShip()
-    {
-        // Spawn at top, random X position, Y=30
-        int x = 50 + Greenfoot.getRandomNumber(700);
-        addObject(new MysteryShip(), x, 30);
-        // The looping MysteryShip sound starts in the actor constructor, so no separate appear cue is needed.
+        // No MysteryShip in Level 2; nothing extra to tick here
     }
 
     // ── Alien grid construction ────────────────────────────────────────────────
