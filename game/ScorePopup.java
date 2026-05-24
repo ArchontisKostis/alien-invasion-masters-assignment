@@ -9,8 +9,8 @@ import greenfoot.*;
  *   Removed automatically after LIFETIME acts.
  *
  * ── Trigger ──────────────────────────────────────────────────────────────────
- *   Spawned by PlayerBullet after a kill, and by MysteryShip.hit().
- *   Shows "+10", "+20", "+30", "+50", "+100", "+150" etc.
+ *   Spawned by PlayerBullet after a kill.
+ *   Shows "+10", "+20", "+30", "+2000" etc.
  *
  * Source: original code; follows game1_space_invaders_FINAL.md §7.15.
  */
@@ -64,7 +64,7 @@ public class ScorePopup extends Actor
     {
         // Choose colour based on point value
         Color col;
-        if (value >= 100)       col = new Color(255, 100, 255, alpha);  // magenta — mystery ship
+        if (value >= 100)       col = new Color(255, 100, 255, alpha);  // magenta — Boss / high-value
         else if (value >= 30)   col = new Color(255, 220,   0, alpha);  // gold — HardAlien
         else if (value >= 20)   col = new Color(  0, 220, 220, alpha);  // cyan — MidAlien
         else                    col = new Color(100, 255,  80, alpha);  // green — EasyAlien

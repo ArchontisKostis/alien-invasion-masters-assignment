@@ -73,8 +73,7 @@ public class IntroWorld extends World
             "You have 3 lives.  Lose them all and it's Game Over.",
             "Destroy all aliens to advance to Level 2.",
             "",
-            "Score:   Easy Alien 10 pts  |  Mid Alien 20 pts  |  Hard Alien 30 pts",
-            "Bonus:   Mystery UFO in Level 2 — worth 50, 100 or 150 pts!"
+            "Score:   Easy Alien 10 pts  |  Mid Alien 20 pts  |  Hard Alien 30 pts"
         };
 
         int y = 228;
