@@ -7,9 +7,7 @@ import greenfoot.*;
  * of the world (getY() &lt; 0).
  *
  * ── Collision stubs ───────────────────────────────────────────────────────────
- *   Three collision checks are ready and clearly marked.  Each is currently
- *   commented out because the target classes (Alien, MysteryShip, BunkerTile)
- *   don't exist yet.  Uncomment each block as those classes are added.
+ *   Collision checks for Alien and BunkerTile are active.
  *
  * ── Sprite ───────────────────────────────────────────────────────────────────
  *   Loads ship/player_bullet.png from images/ and scales it to 8×28 px.
@@ -57,16 +55,6 @@ public class PlayerBullet extends SmoothMover
             getWorld().removeObject(this);
             return;
         }
-
-        // ── Collision: MysteryShip ────────────────────────────────────────────
-        // Uncomment when MysteryShip.java is added (Phase 6):
-        //
-        // MysteryShip ms = (MysteryShip) getOneIntersectingObject(MysteryShip.class);
-        // if (ms != null) {
-        //     ms.hit();                                     // awards points, plays sound
-        //     getWorld().removeObject(this);
-        //     return;
-        // }
 
         // ── Collision: BunkerTile ─────────────────────────────────────────────
         BunkerTile bt = (BunkerTile) getOneIntersectingObject(BunkerTile.class);

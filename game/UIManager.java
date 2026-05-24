@@ -155,10 +155,6 @@ public class UIManager extends Actor
         img.setColor(OVERLAY_BG);
         img.fill();
 
-        // Decorative space elements
-        drawPlanets(img);
-        drawDebris(img);
-
         // Frosted-glass panel
         drawPanel(img);
 
@@ -342,7 +338,6 @@ public class UIManager extends Actor
         drawBody(img, "Easy Alien   10 pts",    x, y); y += dy;
         drawBody(img, "Mid Alien    20 pts",     x, y); y += dy;
         drawBody(img, "Hard Alien   30 pts",     x, y); y += dy;
-        // Mystery Ship (future): drawBody(img, "Mystery Ship  50-300 pts", x, y);
     }
 
     // ── Credits content ───────────────────────────────────────────────────────

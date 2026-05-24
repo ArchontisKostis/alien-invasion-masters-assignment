@@ -8,18 +8,12 @@ import greenfoot.*;
  *   Alien skins: same aliens as Level 1
  *   AlienGrid  : tuned to be less punishing than before (slower pressure ramp)
  *   BunkerTile : 3 hit-points per tile to keep shields viable
- *   (MysteryShip removed)
- *
- * ── Implementation status ────────────────────────────────────────────────────
- *   Player mechanics: ✓ (inherited from GameWorld)
- *   Alien grid / MysteryShip / Bunkers: [Phase 6 — to be added]
  *
  * Source: original code; follows game1_space_invaders_FINAL.md §4 + §6.
  */
 public class Level2World extends GameWorld
 {
     private static final int TWINKLE_STAR_COUNT = 100;
-    // MysteryShip removed: spawn timer and related logic deleted
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -60,25 +54,17 @@ public class Level2World extends GameWorld
         // 7. Initial HUD draw
         updateHUD();
 
-        // 8. Register alien count for win condition
-        setAlienCount(55);
-
-        // 9. MysteryShip removed (no spawn)
-
-        // 10. Background music (starts on Run via GameWorld.started())
+        // 8. Background music (starts on Run via GameWorld.started())
         bgMusic = loadSound("music_level2.wav");
 
-        // 11. UI overlay (pause menu / settings). MUST be last so it paints on top.
+        // 9. UI overlay (pause menu / settings). MUST be last so it paints on top.
         buildUI();
     }
-
-    // ── Mystery Ship spawn ────────────────────────────────────────────────────
 
     @Override
     public void act()
     {
         super.act();
-        // No MysteryShip in Level 2; nothing extra to tick here
     }
 
     // ── Alien grid construction ────────────────────────────────────────────────
