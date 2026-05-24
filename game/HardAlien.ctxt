@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=HardAlien
-comment0.text=\r\n\ HardAlien\ \u2014\ top\ rows\ (rows\ 0\ &\ 1),\ 30\ points.\r\n\r\n\ Bug\ /\ helmet-shaped\ alien\ (yellow-gold).\r\n\ \ \ Frame\ 0\:\ antennae\ pointing\ straight\ up\r\n\ \ \ Frame\ 1\:\ antennae\ angled\ outward\ at\ 45\u00B0\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.8.\r\n
-comment1.params=
-comment1.target=HardAlien()
-numComments=2

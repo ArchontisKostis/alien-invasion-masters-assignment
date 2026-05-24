@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=EasyAlien
-comment0.text=\r\n\ EasyAlien\ \u2014\ bottom\ row\ (row\ 4),\ 10\ points.\r\n\r\n\ Squid-shaped\ alien\ (lime\ green).\r\n\ \ \ Frame\ 0\:\ tentacles\ pointing\ straight\ down\r\n\ \ \ Frame\ 1\:\ tentacles\ splaying\ outward\ at\ 45\u00B0\r\n\r\n\ Source\:\ original\ code;\ follows\ game1_space_invaders_FINAL.md\ \u00A77.6.\r\n
-comment1.params=
-comment1.target=EasyAlien()
-numComments=2
