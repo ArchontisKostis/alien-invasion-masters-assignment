@@ -13,7 +13,6 @@ import greenfoot.*;
  *                  Rows 0-1  HardAlien (30 pts)  hard_alien_0/1.png  — yellow/gold
  *                  Rows 2-3  MidAlien  (20 pts)  med_alien_0/1.png   — cyan
  *                  Row  4    EasyAlien (10 pts)  easy_alien_0/1.png  — lime green
- *   Bunkers    : 4 clusters at Y=460 (8×3 tiles each, 3 hp/tile)
  *   Music      : music_level1.wav loops while running
  *
  * ── Alien grid layout ─────────────────────────────────────────────────────────
@@ -117,37 +116,6 @@ public class Level1World extends GameWorld
         if (row <= 1) return new HardAlien();
         if (row <= 3) return new MidAlien();
         return new EasyAlien();
-    }
-
-    // ── Bunker construction ───────────────────────────────────────────────────
-
-    /**
-     * Build a classic Space Invaders bunker from BunkerTile actors.
-     *
-     * Shape (0=gap, 1=tile):
-     *   { 0,1,1,1,1,1,1,0 }
-     *   { 1,1,1,1,1,1,1,1 }
-     *   { 1,1,0,0,0,0,1,1 }  ← notch for the player cannon
-     *
-     * Each tile is 8×8 px.
-     */
-    private void buildBunker(int originX, int originY, int hp)
-    {
-        int[][] shape = {
-            { 0,1,1,1,1,1,1,0 },
-            { 1,1,1,1,1,1,1,1 },
-            { 1,1,0,0,0,0,1,1 }
-        };
-
-        for (int r = 0; r < shape.length; r++) {
-            for (int c = 0; c < shape[r].length; c++) {
-                if (shape[r][c] == 1) {
-                    addObject(new BunkerTile(hp),
-                              originX + c * 8,
-                              originY + r * 8);
-                }
-            }
-        }
     }
 
     // ── Starfield background ──────────────────────────────────────────────────

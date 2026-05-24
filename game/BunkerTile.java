@@ -11,11 +11,12 @@ import greenfoot.*;
  *     { 1,1,0,0,0,0,1,1 }  ← bottom notch for player cannon
  *
  * ── Damage states ────────────────────────────────────────────────────────────
- *   Each tile starts at `maxHp` hit points (3 for Level 1, 2 for Level 2).
+ *   Each tile starts at `maxHp` hit points.
  *   The colour darkens with each hit; at 0 hp the tile removes itself.
  *
- *   Level 1 (maxHp=3):   green → yellow-green → orange → gone
- *   Level 2 (maxHp=2):   green → orange → gone           (more fragile)
+ *   Full health   (hp == maxHp):  bright green
+ *   Partial health (hp > 1):      yellow-green
+ *   Critical       (hp == 1):     orange
  *
  * ── Sounds ───────────────────────────────────────────────────────────────────
  *   bunker_hit.wav plays when any bullet hits a tile (via damage()).
@@ -36,7 +37,7 @@ public class BunkerTile extends Actor
     // ── Constructor ───────────────────────────────────────────────────────────
 
     /**
-     * @param maxHp  Max hit points — 3 for Level 1, 2 for Level 2.
+     * @param maxHp  Max hit points for this tile.
      */
     public BunkerTile(int maxHp)
     {
@@ -81,27 +82,15 @@ public class BunkerTile extends Actor
 
         Color fill, edge;
 
-        if (maxHp == 2) {
-            // Level 2 — only two states
-            if (hp == 2) {
-                fill = new Color( 64, 255,  96);
-                edge = new Color( 20, 180,  50);
-            } else {
-                fill = new Color(255, 128,  32);
-                edge = new Color(200,  80,  10);
-            }
+        if (hp >= maxHp) {
+            fill = new Color( 64, 255,  96);
+            edge = new Color( 20, 180,  50);
+        } else if (hp > 1) {
+            fill = new Color(160, 224,  32);
+            edge = new Color(100, 160,  10);
         } else {
-            // Level 1 — three states
-            if (hp >= 3) {
-                fill = new Color( 64, 255,  96);
-                edge = new Color( 20, 180,  50);
-            } else if (hp == 2) {
-                fill = new Color(160, 224,  32);
-                edge = new Color(100, 160,  10);
-            } else {
-                fill = new Color(255, 128,  32);
-                edge = new Color(200,  80,  10);
-            }
+            fill = new Color(255, 128,  32);
+            edge = new Color(200,  80,  10);
         }
 
         img.setColor(fill);

@@ -8,7 +8,6 @@ import greenfoot.*;
  *
  *   completedLevel == 1  →  advance to Level2World
  *   completedLevel == 2  →  advance to Level3World (boss fight)
- *   completedLevel >= 3  →  advance to GameOverWorld (win = true)
  *
  * Source: original code; follows game1_space_invaders_FINAL.md §6.
  */
@@ -51,11 +50,8 @@ public class LevelClearWorld extends World
         if (countdown <= 0) {
             if (completedLevel == 1) {
                 Greenfoot.setWorld(new LoadingWorld(new Level2World()));
-            } else if (completedLevel == 2) {
-                Greenfoot.setWorld(new LoadingWorld(new Level3World()));
             } else {
-                // All levels complete — victory!
-                Greenfoot.setWorld(new LoadingWorld(new GameOverWorld(ScoreManager.getScore(), true)));
+                Greenfoot.setWorld(new LoadingWorld(new Level3World()));
             }
         }
     }
@@ -71,9 +67,6 @@ public class LevelClearWorld extends World
 
     private static GreenfootImage buildBackground()
     {
-        try {
-        } catch (Exception ignored) {}
-
         GreenfootImage bg = new GreenfootImage(800, 600);
         bg.setColor(new Color(3, 2, 12));
         bg.fill();
