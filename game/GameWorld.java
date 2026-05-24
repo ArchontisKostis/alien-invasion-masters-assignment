@@ -15,8 +15,7 @@ import java.util.List;
  *   │  Player respawn after death (with configurable delay)                  │
  *   │  playerHit() — decrements lives, removes LifeIcon, starts respawn     │
  *   │  triggerLevelClear() / triggerGameOver() — world transitions           │
- *   │  Alien-kill counter (onAlienKilled) — drives win condition             │
- *   │  Alien march sound cycle (4-step, called by AlienGrid)                 │
+ * *   │  Alien march sound cycle (4-step, called by AlienGrid)                 │
  *   │  Music start/stop wired to Greenfoot's started() / stopped() hooks     │
  *   │  Null-safe playSound() wrapper + first-available fallback cues         │
  *   └───────────────────────────────────────────────────────────────────────┘
@@ -105,10 +104,6 @@ public abstract class GameWorld extends World
 
     // ── Alien counter (win condition) ─────────────────────────────────────────
 
-    /** Total aliens spawned at level start. Set by buildLevel() via setAlienCount(). */
-    private int aliensTotal     = 0;
-    /** Decremented by onAlienKilled(). Win triggered when it reaches 0. */
-    private int aliensRemaining = 0;
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -349,30 +344,6 @@ public abstract class GameWorld extends World
         } else {
             giveRespawnProtection = true;
             respawnTimer = RESPAWN_DELAY;
-        }
-    }
-
-    /**
-     * Register how many aliens exist in this level so onAlienKilled() knows
-     * when all are destroyed. Call this in buildLevel() after spawning aliens.
-     *
-     * @param count  Total number of alien actors added to this world.
-     */
-    public void setAlienCount(int count)
-    {
-        aliensTotal     = count;
-        aliensRemaining = count;
-    }
-
-    /**
-     * Called by each alien when it dies (via AlienGrid or directly).
-     * Triggers level clear when all aliens are destroyed.
-     */
-    public void onAlienKilled()
-    {
-        aliensRemaining--;
-        if (aliensRemaining <= 0) {
-            triggerLevelClear();
         }
     }
 
