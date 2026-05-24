@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * BossExplosion — 4-frame explosion used for the Level 3 boss death sequence.
  *
- * Uses the mystery explosion sprite set from images/boss.
+ * Uses the boss explosion sprite set from images/boss.
  */
 public class BossExplosion extends Actor
 {
@@ -41,7 +41,7 @@ public class BossExplosion extends Actor
     {
         GreenfootImage[] imgs = new GreenfootImage[4];
         for (int i = 0; i < 4; i++) {
-            imgs[i] = new GreenfootImage("boss/explosion_mystery_" + i + ".png");
+            imgs[i] = new GreenfootImage("boss/boss_explosion_" + i + ".png");
         }
         return imgs;
     }

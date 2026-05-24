@@ -194,7 +194,7 @@ public class BossAlien extends Actor
     private void loadFrames()
     {
         try {
-            String[] names = new String[] {"boss/mystery_ship_0.png", "boss/mystery_ship_1.png"};
+            String[] names = new String[] {"boss/boss_alien_0.png", "boss/boss_alien_1.png"};
             frames = new GreenfootImage[names.length];
             for (int i = 0; i < names.length; i++) {
                 GreenfootImage orig = new GreenfootImage(names[i]);
