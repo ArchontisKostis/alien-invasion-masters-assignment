@@ -15,7 +15,6 @@ import java.util.List;
  *   │  Player respawn after death (with configurable delay)                  │
  *   │  playerHit() — decrements lives, removes LifeIcon, starts respawn     │
  *   │  triggerLevelClear() / triggerGameOver() — world transitions           │
- * *   │  Alien march sound cycle (4-step, called by AlienGrid)                 │
  *   │  Music start/stop wired to Greenfoot's started() / stopped() hooks     │
  *   │  Null-safe playSound() wrapper + first-available fallback cues         │
  *   └───────────────────────────────────────────────────────────────────────┘
@@ -94,13 +93,7 @@ public abstract class GameWorld extends World
     private int gameOverTimer = 0;
     private static final int GAME_OVER_DELAY = 90; // acts (~1.5 s)
 
-    // ── Alien march sounds ────────────────────────────────────────────────────
-
-    private static final String[] MARCH_SOUNDS = {
-        "alien_step_1.wav", "alien_step_2.wav",
-        "alien_step_3.wav", "alien_step_4.wav"
-    };
-    private int marchIndex = 0;
+    // (Alien march sounds removed)
 
     // ── Alien counter (win condition) ─────────────────────────────────────────
 
@@ -209,19 +202,6 @@ public abstract class GameWorld extends World
         try {
             bgMusic.setVolume(Math.max(0, Math.min(100, vol)));
         } catch (Exception ignored) {}
-    }
-
-    /**
-     * For consistency with music volume control.
-     * SFX volume is automatically applied in playSound() and playFirstAvailableSound().
-     * This method is here for future use if per-clip volume control is needed.
-     *
-     * @param vol  0-100
-     */
-    public void applySfxVolume(int vol)
-    {
-        // SFX volume is applied at playback time, not stored in a sound object.
-        // This method exists for API consistency and future extension.
     }
 
     // ── Abstract — subclasses must implement ──────────────────────────────────
@@ -348,13 +328,12 @@ public abstract class GameWorld extends World
     }
 
     /**
-     * Play the next step in the 4-sound alien march cycle.
-     * Call from AlienGrid.dropAllAliens() every time the formation drops a row.
+     * playMarchSound was removed — alien march clips no longer exist.
+     * Kept as an empty method so callers don't need to change.
      */
     public void playMarchSound()
     {
-        playFirstAvailableSound(MARCH_SOUNDS[marchIndex], "bunker_hit.wav");
-        marchIndex = (marchIndex + 1) % MARCH_SOUNDS.length;
+        // intentionally left blank
     }
 
     /**

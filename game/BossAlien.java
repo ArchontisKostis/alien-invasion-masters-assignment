@@ -152,12 +152,6 @@ public class BossAlien extends Actor
         }
     }
 
-    private void die()
-    {
-        // Legacy immediate die() is unused; death handled by death sequence.
-        if (defeated) return;
-    }
-
     private void startDeathSequence(World w)
     {
         if (dying || defeated) return;

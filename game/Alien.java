@@ -93,15 +93,6 @@ public abstract class Alien extends Actor
     }
 
     /**
-     * Store the grid-relative column/row for reference.
-     * Actual pixel position is set by setBasePosition().
-     */
-    public void setGridPosition(int col, int row)
-    {
-        // Stored implicitly via baseX/baseY — override if you need per-cell data.
-    }
-
-    /**
      * Set the pixel origin (top-left of the formation, i.e., offsetX = 0).
      * Called once after addObject() in the level's buildLevel() method.
      */

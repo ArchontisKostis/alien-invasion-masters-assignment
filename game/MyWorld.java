@@ -1,21 +1,17 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * Write a description of class MyWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * MyWorld — Greenfoot default scaffold, NOT USED by this game.
+ *
+ * The actual game entry point is IntroWorld.
+ * This file cannot be removed through the Greenfoot IDE; it has no effect
+ * on gameplay. Do not add code here.
  */
 public class MyWorld extends World
 {
-
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
     public MyWorld()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+    {
+        super(800, 600, 1);
+        Greenfoot.setWorld(new IntroWorld());
     }
 }

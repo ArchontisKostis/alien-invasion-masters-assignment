@@ -20,7 +20,6 @@ import greenfoot.*;
  *   Column X = 55 + col * 60    (col 0-10) → centres at 55, 115, … 655
  *   Row    Y = 80 + row * 36    (row 0-4)  → tops at 80, 116, 152, 188, 224
  *
- * Source: original code; follows game1_space_invaders_FINAL.md §4 + §6 + §7.
  */
 public class Level1World extends GameWorld
 {
@@ -30,7 +29,7 @@ public class Level1World extends GameWorld
 
     public Level1World()
     {
-        super(800, 600, 1, 1);   // width, height, cellSize, level = 1
+        super(800, 600, 1, 1);    // width, height, cellSize, level = 1
         buildLevel();             // called HERE, not from GameWorld constructor
     }
 
@@ -130,34 +129,7 @@ public class Level1World extends GameWorld
      */
     private static GreenfootImage buildStarfield()
     {
-        try {
-            return new GreenfootImage("bg_intro.png");
-        } catch (Exception ignored) {}
-
-        GreenfootImage bg = new GreenfootImage(800, 600);
-        bg.setColor(new Color(3, 2, 12));
-        bg.fill();
-
-        java.util.Random rng = new java.util.Random(42L);
-
-        for (int i = 0; i < 180; i++) {
-            int x = rng.nextInt(800);
-            int y = rng.nextInt(600);
-            int b = 120 + rng.nextInt(136);
-            int blueShift = rng.nextInt(30);
-            bg.setColor(new Color(b, b, Math.min(255, b + blueShift)));
-            int size = (rng.nextInt(5) == 0) ? 2 : 1;
-            bg.fillRect(x, y, size, size);
-        }
-
-        for (int i = 0; i < 50; i++) {
-            int x = 580 + rng.nextInt(220);
-            int y = rng.nextInt(160);
-            int alpha = 50 + rng.nextInt(70);
-            bg.setColor(new Color(50, 20, 100, alpha));
-            bg.fillRect(x, y, 2 + rng.nextInt(5), 2 + rng.nextInt(5));
-        }
-
-        return bg;
+        return new GreenfootImage("bg_intro.png");
+        
     }
 }

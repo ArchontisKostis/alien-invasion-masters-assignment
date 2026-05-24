@@ -19,8 +19,6 @@ public class PulsePrompt extends Actor
     private String activationKey = null;
     private boolean prevKeyDown = false;
     private OnActivate listener = null;
-    private boolean autoRemoveOnActivate = false;
-
     public PulsePrompt()
     {
         this("►  Press SPACE to Start  ◄", 25, new Color(255,255,100), 90, 80, 255);
@@ -36,15 +34,6 @@ public class PulsePrompt extends Actor
         setImage(new GreenfootImage(originalImage));
     }
 
-    public PulsePrompt(GreenfootImage img, int period, int minAlpha, int maxAlpha)
-    {
-        this.period = period;
-        this.minAlpha = minAlpha;
-        this.maxAlpha = maxAlpha;
-        originalImage = new GreenfootImage(img);
-        setImage(new GreenfootImage(originalImage));
-    }
-
     public void setActivationKey(String key)
     {
         this.activationKey = key;
@@ -53,11 +42,6 @@ public class PulsePrompt extends Actor
     public void setOnActivate(OnActivate l)
     {
         this.listener = l;
-    }
-
-    public void setAutoRemoveOnActivate(boolean v)
-    {
-        this.autoRemoveOnActivate = v;
     }
 
     public void act()
@@ -87,9 +71,6 @@ public class PulsePrompt extends Actor
     {
         if (listener != null) {
             listener.onActivate();
-        }
-        if (autoRemoveOnActivate && getWorld() != null) {
-            getWorld().removeObject(this);
         }
     }
 

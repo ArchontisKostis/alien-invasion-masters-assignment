@@ -9,15 +9,8 @@ import greenfoot.*;
  *   Active : (held) slightly darker cyan — flips back to hover on release.
  *
  * ── Usage ─────────────────────────────────────────────────────────────────────
- *   Standard button (240 × 38 px):
- *       UIButton btn = new UIButton("RESUME");
- *       btn.setOnClick(() -> doSomething());
- *       world.addObject(btn, 400, 200);
- *
- *   Small button (custom size):
- *       UIButton minus = new UIButton("-", 32, 30);
- *       minus.setOnClick(() -> decreaseVolume());
- *       world.addObject(minus, 330, 220);
+ *   Create via UIManager.addBtn() — all buttons are built through the full
+ *   UIButton(label, width, height, fontSize) constructor internally.
  *
  * ── Callback ──────────────────────────────────────────────────────────────────
  *   Set a lambda or anonymous class via setOnClick(OnClick cb).
@@ -62,19 +55,7 @@ public class UIButton extends Actor
 
     // ── Constructors ──────────────────────────────────────────────────────────
 
-    /** Standard button — 240 × 38, font size 16. */
-    public UIButton(String label)
-    {
-        this(label, 240, 38, 16);
-    }
-
-    /** Small button — custom width/height, font size 14. */
-    public UIButton(String label, int width, int height)
-    {
-        this(label, width, height, 14);
-    }
-
-    /** Full constructor. */
+    /** Full constructor — used by all UIManager.addBtn() calls. */
     public UIButton(String label, int width, int height, int fontSize)
     {
         this.label    = label;

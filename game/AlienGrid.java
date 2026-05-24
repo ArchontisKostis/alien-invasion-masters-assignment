@@ -126,8 +126,7 @@ public class AlienGrid extends Actor
             a.dropOneRow(dropAmount);
         }
 
-        // Play iconic 4-step march sound
-        ((GameWorld) getWorld()).playMarchSound();
+        // march sound removed
 
         // Check invasion line — if any alien reaches Y=480, game over
         for (Alien a : aliens) {

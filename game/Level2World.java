@@ -142,60 +142,6 @@ public class Level2World extends GameWorld
 
     private static GreenfootImage buildBackground()
     {
-        try {
-            return new GreenfootImage("bg_level2.png");
-        } catch (Exception ignored) {}
-        try {
-            return new GreenfootImage("raw/bg_level2.png");
-        } catch (Exception ignored) {}
-
-        // Procedural lunar surface fallback
-        GreenfootImage bg = new GreenfootImage(800, 600);
-
-        // Space portion (upper 510 px)
-        bg.setColor(new Color(3, 2, 12));
-        bg.fill();
-
-        java.util.Random rng = new java.util.Random(99L);
-
-        // Stars
-        for (int i = 0; i < 150; i++) {
-            int x = rng.nextInt(800);
-            int y = rng.nextInt(510);
-            int b = 120 + rng.nextInt(136);
-            bg.setColor(new Color(b, b, b));
-            bg.fillRect(x, y, (rng.nextInt(5) == 0) ? 2 : 1, 1);
-        }
-
-        // Earth in top-right corner (placeholder blue circle)
-        bg.setColor(new Color(30, 80, 180, 180));
-        drawCircle(bg, 710, 60, 55);
-        bg.setColor(new Color(200, 220, 255, 120));
-        drawCircle(bg, 700, 50, 20);   // cloud highlight
-
-        // Lunar ground strip (lower 90 px)
-        bg.setColor(new Color(110, 110, 120));
-        bg.fillRect(0, 510, 800, 90);
-
-        // Terrain surface highlight
-        bg.setColor(new Color(150, 150, 160));
-        for (int x = 0; x < 800; x += 8) {
-            int h = 3 + rng.nextInt(6);
-            bg.fillRect(x, 510, 8, h);
-        }
-
-        // Craters
-        bg.setColor(new Color(80, 80, 90));
-        bg.fillOval(120, 520, 30, 12);
-        bg.fillOval(380, 530, 22, 8);
-        bg.fillOval(630, 518, 40, 14);
-
-        return bg;
-    }
-
-    /** Draw a filled circle on img centred at (cx, cy) with radius r. */
-    private static void drawCircle(GreenfootImage img, int cx, int cy, int r)
-    {
-        img.fillOval(cx - r, cy - r, r * 2, r * 2);
+        return new GreenfootImage("bg_level2.png");
     }
 }

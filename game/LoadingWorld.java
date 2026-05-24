@@ -13,7 +13,6 @@ import greenfoot.*;
 public class LoadingWorld extends World
 {
     private static final int DISPLAY_TIME = 180;  // acts (~3 seconds at 60 fps)
-    private static final int DOT_ANIMATION_SPEED = 15;  // acts per dot cycle
     private static final int BAR_HEIGHT = 12;
     private static final String[] LOADING_BACKGROUNDS = {
         "loading/loading_banner_1.png",
@@ -25,7 +24,6 @@ public class LoadingWorld extends World
     };
     
     private int countdown;
-    private int dotFrame;
     private final World nextWorld;
     private final GreenfootImage baseBackground;
     
@@ -39,7 +37,6 @@ public class LoadingWorld extends World
         super(800, 600, 1);
         this.nextWorld = nextWorld;
         this.countdown = DISPLAY_TIME;
-        this.dotFrame = 0;
         this.baseBackground = buildBackground();
 
         // Ensure no world BGM keeps running during transition.
@@ -52,7 +49,6 @@ public class LoadingWorld extends World
     @Override
     public void act()
     {
-        dotFrame++;
         drawLoadingScreen();
         
         countdown--;

@@ -9,9 +9,7 @@ import java.util.List;
  *   UIManager is an Actor sized to match the world (800 × 600).
  *   When HIDDEN its image is a 1×1 transparent pixel so it costs nothing.
  *   When open it renders a dark semi-transparent 800×600 overlay with:
- *     • 3 procedurally drawn floating planets (orange-red, blue, pale-green)
- *     • 15 fixed-seed asteroid debris fragments
- *     • A frosted-glass panel (300 × 380 px) centred in the world
+ *     • A frosted-glass panel (300 × 385 px) centred in the world
  *     • Panel title + decorative separator in cyan
  *   UIButton actors are added to the world on top for each menu state.
  *
@@ -64,7 +62,6 @@ public class UIManager extends Actor
     private static final Color TITLE_COL    = new Color(0, 230, 255);
     private static final Color BODY_COL     = new Color(200, 220, 240);
     private static final Color DIM_COL      = new Color(100, 130, 160);
-    private static final Color GOLD_COL     = new Color(255, 200,  40);
     private static final Color TRANSPARENT  = new Color(0, 0, 0, 0);
 
     // ── Runtime state ─────────────────────────────────────────────────────────
@@ -162,71 +159,6 @@ public class UIManager extends Actor
         drawPanelContent(img);
 
         setImage(img);
-    }
-
-    // ── Planets ───────────────────────────────────────────────────────────────
-
-    private void drawPlanets(GreenfootImage img)
-    {
-        // Large orange-red planet with ring — top-right
-        drawPlanet(img, 668, 88, 38,
-            new Color(210, 85, 35), new Color(190, 65, 25),
-            new Color(180, 60, 25, 160));
-
-        // Medium blue planet — bottom-left
-        drawPlanet(img, 138, 488, 28,
-            new Color(35, 85, 200), new Color(20, 60, 170),
-            null);
-
-        // Small pale-green planet — upper-left
-        drawPlanet(img, 68, 138, 22,
-            new Color(75, 175, 100), new Color(55, 145, 75),
-            null);
-    }
-
-    private void drawPlanet(GreenfootImage img, int cx, int cy, int r,
-                            Color light, Color dark, Color ringColor)
-    {
-        // Drop shadow
-        img.setColor(new Color(0, 0, 0, 70));
-        img.fillOval(cx - r + 4, cy - r + 4, r * 2, r * 2);
-
-        // Dark side (full body in dark colour)
-        img.setColor(dark);
-        img.fillOval(cx - r, cy - r, r * 2, r * 2);
-
-        // Light side (offset circle for a simple 2D shading illusion)
-        img.setColor(light);
-        img.fillOval(cx - r + 2, cy - r + 2, r * 2 - 4, r * 2 - 4);
-
-        // Specular highlight
-        img.setColor(new Color(255, 255, 255, 55));
-        img.fillOval(cx - r / 2, cy - r / 2, r / 2, r / 3);
-
-        // Ring (orange-red planet only)
-        if (ringColor != null) {
-            img.setColor(ringColor);
-            int rw = (int)(r * 2.8);
-            int rh = r / 3;
-            img.drawOval(cx - rw / 2, cy - rh / 2, rw, rh);
-            img.drawOval(cx - rw / 2, cy - rh / 2 + 1, rw, rh); // double-line ring
-        }
-    }
-
-    // ── Debris fragments ──────────────────────────────────────────────────────
-
-    private void drawDebris(GreenfootImage img)
-    {
-        java.util.Random rng = new java.util.Random(123L);
-        for (int i = 0; i < 15; i++) {
-            int x = rng.nextInt(W);
-            int y = rng.nextInt(H);
-            int w = 3 + rng.nextInt(9);
-            int h = 2 + rng.nextInt(5);
-            int alpha = 60 + rng.nextInt(60);
-            img.setColor(new Color(110, 125, 145, alpha));
-            img.fillRect(x, y, w, h);
-        }
     }
 
     // ── Glass panel ───────────────────────────────────────────────────────────
@@ -442,10 +374,10 @@ public class UIManager extends Actor
         int sfxY = PNL_Y + 185 - smallH / 2 + 6;
         addBtn("-", barLeft  - smallW / 2 - 6, sfxY, smallW, smallH, 14,
                () -> { GameSettings.setSfxVolume(GameSettings.getSfxVolume() - 10);
-                        applySfxVolume(); switchTo(State.SETTINGS); });
+                        switchTo(State.SETTINGS); });
         addBtn("+", barRight + smallW / 2 + 6, sfxY, smallW, smallH, 14,
                () -> { GameSettings.setSfxVolume(GameSettings.getSfxVolume() + 10);
-                        applySfxVolume(); switchTo(State.SETTINGS); });
+                        switchTo(State.SETTINGS); });
 
         // Back
         buildBackButton(PNL_BOT - 48);
@@ -536,16 +468,6 @@ public class UIManager extends Actor
         World w = getWorld();
         if (w instanceof GameWorld) {
             ((GameWorld) w).applyMusicVolume(GameSettings.getMusicVolume());
-        }
-    }
-
-    // ── SFX volume application ────────────────────────────────────────────────
-
-    private void applySfxVolume()
-    {
-        World w = getWorld();
-        if (w instanceof GameWorld) {
-            ((GameWorld) w).applySfxVolume(GameSettings.getSfxVolume());
         }
     }
 
