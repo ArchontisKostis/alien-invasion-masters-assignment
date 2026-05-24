@@ -22,7 +22,7 @@ import java.util.List;
  *   SETTINGS     Music vol, SFX vol
  *   HOW_TO_PLAY  Key instructions drawn directly on the overlay
  *   CREDITS      Author & asset credits drawn on the overlay
- *   CHEATS       Invincibility, Rapid Fire, Kill All, Skip Level
+ *   CHEATS       Invincibility, Kill All, Skip Level
  *
  * ── ESC toggle ────────────────────────────────────────────────────────────────
  *   Pressing ESC while in HIDDEN opens the PAUSE menu.
