@@ -60,7 +60,7 @@ public class AlienBullet extends SmoothMover
         // Hit player cannon
         PlayerCannon p = (PlayerCannon) getOneIntersectingObject(PlayerCannon.class);
         if (p != null) {
-            if (!p.isInvulnerable()) {
+            if (!p.isInvulnerable() && !GameSettings.isCheatInvincible()) {
                 ((GameWorld) getWorld()).playerHit();
             }
             getWorld().removeObject(this);
