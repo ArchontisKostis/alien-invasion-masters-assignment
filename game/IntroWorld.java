@@ -56,7 +56,7 @@ public class IntroWorld extends World
     private void drawTitle()
     {
         GreenfootImage title = new GreenfootImage(
-            "SPACE  INVADERS", 40,
+            "ALIEN INVASION", 40,
             Color.WHITE,
             new Color(0, 0, 0, 0));
         getBackground().drawImage(title, 400 - title.getWidth() / 2, 148);
