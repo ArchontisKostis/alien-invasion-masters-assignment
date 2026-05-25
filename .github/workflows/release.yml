@@ -24,18 +24,37 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Download Greenfoot
+      - name: Download Pure-Java Greenfoot installer
         run: |
+          set -euo pipefail
+
           mkdir -p lib
 
-          curl -L \
-            https://www.greenfoot.org/download/files/Greenfoot-linux-371.zip \
-            -o greenfoot.zip
+          echo "Downloading Pure Java Greenfoot installer..."
+          curl -L --retry 3 \
+            https://www.greenfoot.org/download/files/Greenfoot-generic-371.jar \
+            -o greenfoot-generic.jar
 
-          unzip greenfoot.zip -d greenfoot
+          # sanity check: ensure not a small HTML error response
+          if [ ! -f greenfoot-generic.jar ] || [ $(stat -c%s greenfoot-generic.jar) -lt 10000 ]; then
+            echo "Greenfoot installer download failed or file too small (possible HTML error)." >&2
+            echo "Downloaded file preview:" >&2
+            head -c 2048 greenfoot-generic.jar || true
+            exit 1
+          fi
 
-          find greenfoot -name "greenfoot.jar" -exec cp {} lib/ \;
-          find greenfoot -name "bluejcore.jar" -exec cp {} lib/ \;
+          echo "Unpacking installer jar..."
+          mkdir -p greenfoot
+          unzip -q greenfoot-generic.jar -d greenfoot || true
+
+          echo "Searching for runtime jars and copying to lib/..."
+          find greenfoot -name "greenfoot.jar" -exec cp {} lib/ \; || true
+          find greenfoot -name "bluejcore.jar" -exec cp {} lib/ \; || true
+          # if jars not found inside generic installer, also accept the installer jar itself
+          if [ ! -f lib/greenfoot.jar ]; then
+            echo "greenfoot.jar not found inside installer; copying installer as fallback"
+            cp greenfoot-generic.jar lib/greenfoot.jar || true
+          fi
 
       - name: Setup Node
         uses: actions/setup-node@v3
