@@ -68,6 +68,27 @@ jobs:
             cp greenfoot-generic.jar lib/greenfoot.jar || true
           fi
 
+      - name: Log Greenfoot download
+        run: |
+          echo "== greenfoot-generic.jar metadata =="
+          if [ -f greenfoot-generic.jar ]; then
+            stat -c '%n %s %y' greenfoot-generic.jar || true
+            sha256sum greenfoot-generic.jar || true
+            file greenfoot-generic.jar || true
+            echo "== listing greenfoot-generic.jar contents (top 200 lines) =="
+            unzip -l greenfoot-generic.jar | sed -n '1,200p' || true
+          else
+            echo "greenfoot-generic.jar not found" >&2
+          fi
+          echo "== lib/*.jar files =="
+          ls -la lib || true
+          for j in lib/*.jar; do
+            if [ -f "$j" ]; then
+              echo "---- $j ----"
+              jar -tf "$j" | sed -n '1,200p' || true
+            fi
+          done
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -80,6 +101,14 @@ jobs:
             @semantic-release/git \
             @semantic-release/github \
             conventional-changelog-conventionalcommits
+
+      - name: Log npm global packages
+        run: |
+          echo "== npm global root and bin =="
+          npm root -g || true
+          npm bin -g || true
+          echo "== npm global packages (depth=0) =="
+          npm list -g --depth=0 || true
 
 
       - name: Semantic Version Release
