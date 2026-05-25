@@ -1,0 +1,104 @@
+name: Release Greenfoot Game
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Download Greenfoot
+        run: |
+          mkdir -p lib
+
+          curl -L \
+            https://www.greenfoot.org/download/files/Greenfoot-linux-371.zip \
+            -o greenfoot.zip
+
+          unzip greenfoot.zip -d greenfoot
+
+          find greenfoot -name "greenfoot.jar" -exec cp {} lib/ \;
+          find greenfoot -name "bluejcore.jar" -exec cp {} lib/ \;
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            @semantic-release/github \
+            conventional-changelog-conventionalcommits
+
+
+      - name: Semantic Version Release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          semantic-release
+
+      - name: Get release version
+        id: version
+        run: |
+          VERSION=$(git describe --tags --abbrev=0)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create build directories
+        run: |
+          mkdir -p build/classes
+          mkdir -p dist
+
+      - name: Compile sources
+        run: |
+          find game -name "*.java" > sources.txt
+
+          javac \
+            -cp "lib/*" \
+            -d build/classes \
+            @sources.txt
+
+      - name: Copy assets
+        run: |
+          cp -r images build/classes/ || true
+          cp -r sounds build/classes/ || true
+
+      - name: Create manifest
+        run: |
+          echo "Main-Class: greenfoot.export.GreenfootScenarioApplication" > manifest.txt
+
+      - name: Build JAR
+        run: |
+          jar cfm \
+            dist/game-${{ steps.version.outputs.version }}.jar \
+            manifest.txt \
+            -C build/classes .
+
+      - name: Upload Release Artifact
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          files: dist/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
