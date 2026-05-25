@@ -100,6 +100,21 @@ jobs:
           mkdir -p build/classes
           mkdir -p dist
 
+      - name: Debug lib contents
+        run: |
+          echo "== lib directory =="
+          ls -la lib || true
+          echo "== java/javaac versions =="
+          java -version || true
+          javac -version || true
+          echo "== Jar contents preview =="
+          for j in lib/*.jar; do
+            if [ -f "$j" ]; then
+              echo "---- $j ----"
+              jar -tf "$j" | head -n 50 || true
+            fi
+          done
+
       - name: Compile sources
         run: |
           find game -name "*.java" > sources.txt
