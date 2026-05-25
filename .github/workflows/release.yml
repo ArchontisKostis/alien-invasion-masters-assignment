@@ -51,8 +51,20 @@ jobs:
           find greenfoot -name "greenfoot.jar" -exec cp {} lib/ \; || true
           find greenfoot -name "bluejcore.jar" -exec cp {} lib/ \; || true
           # if jars not found inside generic installer, also accept the installer jar itself
-          if [ ! -f lib/greenfoot.jar ]; then
-            echo "greenfoot.jar not found inside installer; copying installer as fallback"
+          # If no runtime jars were copied, try extracting nested jars from the installer
+          if [ -z "$(ls lib/*.jar 2>/dev/null)" ]; then
+            echo "No runtime jars found in greenfoot unpack; extracting nested jars from installer..."
+            unzip -l greenfoot-generic.jar | awk '{print $4}' | grep '\.jar$' | while read -r inner; do
+              if [ -n "$inner" ]; then
+                echo "Extracting $inner to lib/"
+                unzip -p greenfoot-generic.jar "$inner" > "lib/$(basename "$inner")" || true
+              fi
+            done
+          fi
+
+          # final fallback: if still no jars, copy installer as greenfoot.jar
+          if [ -z "$(ls lib/*.jar 2>/dev/null)" ]; then
+            echo "No nested jars extracted; copying installer as fallback lib/greenfoot.jar"
             cp greenfoot-generic.jar lib/greenfoot.jar || true
           fi
 
@@ -60,7 +72,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
 
       - name: Install semantic-release
         run: |
