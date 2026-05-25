@@ -89,6 +89,17 @@ jobs:
             fi
           done
 
+      - name: Probe Greenfoot classes
+        run: |
+          echo "Looking for greenfoot classes (World.class) inside lib jars..."
+          for j in lib/*.jar; do
+            if [ -f "$j" ]; then
+              echo "---- Inspecting $j ----"
+              jar -tf "$j" | grep 'World.class' || true
+              jar -tf "$j" | grep '^lib/greenfoot' | sed -n '1,200p' || true
+            fi
+          done
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
