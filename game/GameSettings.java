@@ -6,16 +6,6 @@ import greenfoot.*;
  * All fields are private-static with public get/set accessors.
  * No instances are ever created.
  *
- * ── Settings ──────────────────────────────────────────────────────────────────
- *   musicVolume      0-100 (default 70)
- *   sfxVolume        0-100 (default 80)  [Greenfoot does not support per-clip
- *                                         volume for one-shot sounds]
- *   paused           true while the UI overlay is open
- *
- * ── Cheats ────────────────────────────────────────────────────────────────────
- *   cheatInvincible  player cannot die when true
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §5.
  */
 public class GameSettings
 {

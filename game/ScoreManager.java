@@ -1,19 +1,5 @@
 /**
  * ScoreManager — static score tracker shared across all worlds and levels.
- *
- * No instance is ever created; every field and method is static.
- * Call ScoreManager.addPoints(), ScoreManager.getScore(), etc. from anywhere.
- *
- * ── Lifetime ─────────────────────────────────────────────────────────────────
- *   score     resets to 0 when the player starts a new game (press R).
- *   highScore persists for the entire JVM session — it is NOT reset on restart.
- *
- * ── Usage ────────────────────────────────────────────────────────────────────
- *   ScoreManager.addPoints(20);              // alien killed
- *   int s = ScoreManager.getScore();         // draw on HUD
- *   ScoreManager.reset();                    // new game
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §12.
  */
 public class ScoreManager
 {
