@@ -2,20 +2,6 @@ import greenfoot.*;
 
 /**
  * AlienBullet — the zigzag bomb fired by the alien formation.
- *
- * ── Movement ──────────────────────────────────────────────────────────────────
- *   Falls straight down at 3.5 px/act. Removed when it exits the bottom.
- *
- * ── Animation ────────────────────────────────────────────────────────────────
- *   Two-frame zigzag flicker (threshold 2 = 30 fps flicker):
- *     Frame 0: leans left  — aliens/alien_bomp_0.png
- *     Frame 1: mirror of frame 0 (leans right)
- *
- * ── Collisions ────────────────────────────────────────────────────────────────
- *   PlayerCannon → GameWorld.playerHit()  (full death sequence)
- *   BunkerTile   → BunkerTile.damage()   (damages bunker, plays bunker_hit.wav)
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.9.
  */
 public class AlienBullet extends SmoothMover
 {

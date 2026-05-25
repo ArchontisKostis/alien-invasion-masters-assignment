@@ -4,34 +4,6 @@ import java.util.List;
 
 /**
  * UIManager — full-screen overlay UI for pause, settings, cheats, and help.
- *
- * ── How it works ──────────────────────────────────────────────────────────────
- *   UIManager is an Actor sized to match the world (800 × 600).
- *   When HIDDEN its image is a 1×1 transparent pixel so it costs nothing.
- *   When open it renders a dark semi-transparent 800×600 overlay with:
- *     • A frosted-glass panel (300 × 385 px) centred in the world
- *     • Panel title + decorative separator in cyan
- *   UIButton actors are added to the world on top for each menu state.
- *
- * ── States ────────────────────────────────────────────────────────────────────
- *   HIDDEN       No overlay; game runs normally.
- *   PAUSE        Pause menu — Resume / Settings / How To Play / Credits /
- *                             Cheats / Quit
- *   SETTINGS     Music vol, SFX vol
- *   HOW_TO_PLAY  Key instructions drawn directly on the overlay
- *   CREDITS      Author & asset credits drawn on the overlay
- *   CHEATS       Invincibility, Kill All, Skip Level
- *
- * ── ESC toggle ────────────────────────────────────────────────────────────────
- *   Pressing ESC while in HIDDEN opens the PAUSE menu.
- *   Pressing ESC in any open state calls close().
- *
- * ── Paint order ───────────────────────────────────────────────────────────────
- *   setPaintOrder(UIButton.class, UIManager.class) is called in addedToWorld()
- *   so UIButton actors appear on top of the overlay, and the overlay appears
- *   on top of all gameplay actors.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §UI.
  */
 public class UIManager extends Actor
 {

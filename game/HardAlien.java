@@ -2,12 +2,6 @@ import greenfoot.*;
 
 /**
  * HardAlien — top rows (rows 0 & 1), 30 points.
- *
- * Bug / helmet-shaped alien (yellow-gold).
- *   Frame 0: antennae pointing straight up
- *   Frame 1: antennae angled outward at 45°
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.8.
  */
 public class HardAlien extends Alien
 {

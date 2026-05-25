@@ -3,47 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * GameWorld — abstract base class for all gameplay levels (Level1World, Level2World).
+ * GameWorld — abstract base class for gameplay levels.
  *
- * Centralises everything that is identical across levels so subclasses stay thin:
+ * Centralises everything that is identical across levels so subclasses stay thin.
  *
- *   ┌─ Shared state ────────────────────────────────────────────────────────┐
- *   │  lives, level number, bgMusic, player reference, lifeIcon list        │
- *   └───────────────────────────────────────────────────────────────────────┘
- *   ┌─ Shared behaviour ─────────────────────────────────────────────────────┐
- *   │  HUD drawing (score / hi / level strip)                                │
- *   │  Player respawn after death (with configurable delay)                  │
- *   │  playerHit() — decrements lives, removes LifeIcon, starts respawn     │
- *   │  triggerLevelClear() / triggerGameOver() — world transitions           │
- *   │  Music start/stop wired to Greenfoot's started() / stopped() hooks     │
- *   │  Null-safe playSound() wrapper + first-available fallback cues         │
- *   └───────────────────────────────────────────────────────────────────────┘
- *
- * ── Subclass contract ────────────────────────────────────────────────────────
- *   Subclasses MUST implement buildLevel() and call it from their OWN
- *   constructor (after super()), NOT from GameWorld's constructor.
- *   This avoids the Java antipattern of calling an overridable method from a
- *   superclass constructor (subclass fields are not yet initialised at that point).
- *
- *   Minimal subclass skeleton:
- *
- *     public class Level1World extends GameWorld {
- *         public Level1World() {
- *             super(800, 600, 1, 1);   // width, height, cellSize, levelNumber
- *             buildLevel();
- *         }
- *         protected void buildLevel() {
- *             setBackground( ... );
- *             spawnPlayer();           // inherited — places player at (400, 540)
- *             buildLifeIcons();        // inherited — adds 3 life icons top-right
- *             updateHUD();             // inherited — draws score bar on background
- *             bgMusic = loadSound("music_level1.wav");
- *         }
- *     }
- *
- *   Override spawnPlayer() or updateHUD() only if you need level-specific behaviour.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §5–6.
  */
 public abstract class GameWorld extends World
 {
@@ -51,8 +14,6 @@ public abstract class GameWorld extends World
 
     /**
      * The pause/settings overlay actor.
-     * Assigned by buildUI() which subclasses should call from buildLevel()
-     * AFTER setBackground() so the UIManager's paint-order call takes effect.
      */
     protected UIManager uiManager;
 
@@ -61,7 +22,7 @@ public abstract class GameWorld extends World
     /** Remaining lives. Starts at 3; reaching 0 triggers game over. */
     protected int lives = 3;
 
-    /** Level number (1, 2, …). Set via constructor. */
+    /** Level number (1, 2, ...). Set via constructor. */
     protected final int level;
 
     /** Active player actor. Null while the death/respawn animation plays. */
@@ -74,9 +35,6 @@ public abstract class GameWorld extends World
 
     /**
      * Background music for this level.
-     * Assign in buildLevel() via:  bgMusic = loadSound("music_level1.wav");
-     * GameWorld automatically starts it when Greenfoot's Run button is pressed
-     * and stops it when Stop is pressed or the world changes.
      */
     protected GreenfootSound bgMusic;
     private boolean musicLoopStarted = false;
@@ -92,11 +50,6 @@ public abstract class GameWorld extends World
     // Delay before showing Game Over to allow explosion/flash animation to play
     private int gameOverTimer = 0;
     private static final int GAME_OVER_DELAY = 90; // acts (~1.5 s)
-
-    // (Alien march sounds removed)
-
-    // ── Alien counter (win condition) ─────────────────────────────────────────
-
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -325,15 +278,6 @@ public abstract class GameWorld extends World
             giveRespawnProtection = true;
             respawnTimer = RESPAWN_DELAY;
         }
-    }
-
-    /**
-     * playMarchSound was removed — alien march clips no longer exist.
-     * Kept as an empty method so callers don't need to change.
-     */
-    public void playMarchSound()
-    {
-        // intentionally left blank
     }
 
     /**

@@ -2,17 +2,6 @@ import greenfoot.*;
 
 /**
  * ScorePopup — floating "+N" label that rises and fades after an alien is killed.
- *
- * ── Behaviour ────────────────────────────────────────────────────────────────
- *   Rises:  0.6 px/act upward (total ≈ 18 px over 30 acts)
- *   Fades:  alpha 255 → 0 linearly over 30 acts
- *   Removed automatically after LIFETIME acts.
- *
- * ── Trigger ──────────────────────────────────────────────────────────────────
- *   Spawned by PlayerBullet after a kill.
- *   Shows "+10", "+20", "+30", "+2000" etc.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.15.
  */
 public class ScorePopup extends Actor
 {

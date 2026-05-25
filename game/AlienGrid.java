@@ -3,26 +3,6 @@ import java.util.List;
 
 /**
  * AlienGrid — invisible manager actor that drives the alien formation.
- *
- * ── Responsibilities ──────────────────────────────────────────────────────────
- *   • March the formation left/right at a speed that increases as aliens are killed.
- *   • Detect wall collision → reverse direction → drop all aliens one row.
- *   • Play the 4-step march sound cycle (via GameWorld.playMarchSound()) on each drop.
- *   • Check the invasion line (Y ≥ 480) after each drop → triggerGameOver if breached.
- *   • Periodically fire an AlienBullet from a random alien.
- *   • Track how many aliens remain; call triggerLevelClear() when count hits 0.
- *
- * ── Progressive difficulty ────────────────────────────────────────────────────
- *   Every 10 aliens killed, speed increases by 0.2 px/act in Level 1 and
- *   0.05 px/act in Level 2.
- *   Every 5 aliens killed, bomb interval decreases by 5 acts
- *   (floors: 35 in Level 1, 48 in Level 2).
- *
- * ── Placement ────────────────────────────────────────────────────────────────
- *   Place at (-1, -1) so it's off-screen and never visible.
- *   setImage(new GreenfootImage(1,1)) keeps Greenfoot happy.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.4.
  */
 public class AlienGrid extends Actor
 {

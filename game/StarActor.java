@@ -8,7 +8,6 @@ import greenfoot.*;
  * Size: randomly 1×1 or 2×2 px.
  * Alpha oscillates between 60 and 255 using a sine wave.
  *
- * Source: original code, pattern from course lecture examples.
  */
 public class StarActor extends Actor
 {

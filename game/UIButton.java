@@ -2,21 +2,6 @@ import greenfoot.*;
 
 /**
  * UIButton — a clickable, hover-aware button actor for the in-game UI overlay.
- *
- * ── Visual states ─────────────────────────────────────────────────────────────
- *   Normal : dark navy background (#040A1C), white label, subtle cyan border.
- *   Hover  : solid cyan fill, white label, bright top-edge glow line.
- *   Active : (held) slightly darker cyan — flips back to hover on release.
- *
- * ── Usage ─────────────────────────────────────────────────────────────────────
- *   Create via UIManager.addBtn() — all buttons are built through the full
- *   UIButton(label, width, height, fontSize) constructor internally.
- *
- * ── Callback ──────────────────────────────────────────────────────────────────
- *   Set a lambda or anonymous class via setOnClick(OnClick cb).
- *   The callback fires once per mouse-press-and-release cycle.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §UI.
  */
 public class UIButton extends Actor
 {

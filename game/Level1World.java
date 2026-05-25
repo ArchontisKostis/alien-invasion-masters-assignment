@@ -1,25 +1,7 @@
 import greenfoot.*;
 
 /**
- * Level1World — Earth Orbit, the first gameplay level.
- *
- * ── What's in this world ──────────────────────────────────────────────────────
- *   Background : procedural deep-space starfield (bg_level1.png used if present)
- *   HUD strip  : inherited from GameWorld — score / hi / level at the top
- *   Life icons : 3 × LifeIcon actors, top-right corner
- *   Player     : PlayerCannon at (400, 540)
- *   AlienGrid  : invisible manager at (-1, -1)
- *   Aliens     : 55 total — 11 cols × 5 rows
- *                  Rows 0-1  HardAlien (30 pts)  hard_alien_0/1.png  — yellow/gold
- *                  Rows 2-3  MidAlien  (20 pts)  med_alien_0/1.png   — cyan
- *                  Row  4    EasyAlien (10 pts)  easy_alien_0/1.png  — lime green
- *   Music      : music_level1.wav loops while running
- *
- * ── Alien grid layout ─────────────────────────────────────────────────────────
- *   11 columns × 5 rows = 55 aliens.
- *   Column X = 55 + col * 60    (col 0-10) → centres at 55, 115, … 655
- *   Row    Y = 80 + row * 36    (row 0-4)  → tops at 80, 116, 152, 188, 224
- *
+ * Level1World, the first gameplay level.
  */
 public class Level1World extends GameWorld
 {
@@ -39,7 +21,7 @@ public class Level1World extends GameWorld
     protected void buildLevel()
     {
         // 1. Background
-        setBackground(buildStarfield());
+        setBackground(new GreenfootImage("bg_intro.png"));
 
         // 1b. Intro-style twinkling stars layered over the background
         addTwinklingStars(TWINKLE_STAR_COUNT);
@@ -115,21 +97,5 @@ public class Level1World extends GameWorld
         if (row <= 1) return new HardAlien();
         if (row <= 3) return new MidAlien();
         return new EasyAlien();
-    }
-
-    // ── Starfield background ──────────────────────────────────────────────────
-
-    /**
-     * Load bg_level1.png if available, otherwise generate a procedural starfield.
-     *
-     * Procedural version:
-     *   • 180 stars, brightness 120–255, size 1 or 2 px, fixed seed.
-     *   • Faint purple nebula smear in the top-right corner.
-     *   • Near-black background: Color(3, 2, 12).
-     */
-    private static GreenfootImage buildStarfield()
-    {
-        return new GreenfootImage("bg_intro.png");
-        
     }
 }

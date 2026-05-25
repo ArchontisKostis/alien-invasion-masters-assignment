@@ -2,17 +2,6 @@ import greenfoot.*;
 
 /**
  * PlayerBullet — the laser bolt fired by PlayerCannon.
- *
- * Travels straight upward at SPEED px/act. Removed when it exits the top
- * of the world (getY() &lt; 0).
- *
- * ── Collision stubs ───────────────────────────────────────────────────────────
- *   Collision checks for Alien and BunkerTile are active.
- *
- * ── Sprite ───────────────────────────────────────────────────────────────────
- *   Loads ship/player_bullet.png from images/ and scales it to 8×28 px.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.3.
  */
 public class PlayerBullet extends SmoothMover
 {

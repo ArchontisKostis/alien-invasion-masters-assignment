@@ -4,11 +4,6 @@ import greenfoot.*;
  * LoadingWorld — a simple loading screen displayed between levels or before the game starts.
  * 
  * Shows a loading animation for a brief moment before transitioning to the next world.
- * Displays a "Loading..." message with animated dots.
- * 
- * Usage:
- *   Greenfoot.setWorld(new LoadingWorld(new Level1World()));
- *   Greenfoot.setWorld(new LoadingWorld(new Level2World()));
  */
 public class LoadingWorld extends World
 {

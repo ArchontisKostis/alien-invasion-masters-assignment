@@ -2,12 +2,6 @@ import greenfoot.*;
 
 /**
  * EasyAlien — bottom row (row 4), 10 points.
- *
- * Squid-shaped alien (lime green).
- *   Frame 0: tentacles pointing straight down
- *   Frame 1: tentacles splaying outward at 45°
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.6.
  */
 public class EasyAlien extends Alien
 {

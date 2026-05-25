@@ -3,25 +3,20 @@ import greenfoot.*;
 /**
  * BunkerTile — a single 8×8 pixel tile in a bunker (shield).
  *
- * ── Bunker layout (from Level1World.buildBunker) ─────────────────────────────
- *   8 columns × 3 rows of BunkerTile actors form a classic Space Invaders shield.
+ * - Bunker layout
+ *   8 columns × 3 rows of BunkerTile actors form a shield.
  *   Shape mask:
  *     { 0,1,1,1,1,1,1,0 }
  *     { 1,1,1,1,1,1,1,1 }
  *     { 1,1,0,0,0,0,1,1 }  ← bottom notch for player cannon
  *
- * ── Damage states ────────────────────────────────────────────────────────────
+ * - Damage states 
  *   Each tile starts at `maxHp` hit points.
  *   The colour darkens with each hit; at 0 hp the tile removes itself.
  *
  *   Full health   (hp == maxHp):  bright green
  *   Partial health (hp > 1):      yellow-green
  *   Critical       (hp == 1):     orange
- *
- * ── Sounds ───────────────────────────────────────────────────────────────────
- *   bunker_hit.wav plays when any bullet hits a tile (via damage()).
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.16.
  */
 public class BunkerTile extends Actor
 {

@@ -1,15 +1,7 @@
 import greenfoot.*;
 
 /**
- * Level2World — Lunar Surface, the second gameplay level.
- *
- * ── What changes vs Level 1 ───────────────────────────────────────────────────
- *   Background : lunar surface (bg_level2.png + terrain_moon.png strip at Y=510)
- *   Alien skins: same aliens as Level 1
- *   AlienGrid  : tuned to be less punishing than before (slower pressure ramp)
- *   BunkerTile : 3 hit-points per tile to keep shields viable
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §4 + §6.
+ * Level2World, the second gameplay level.
  */
 public class Level2World extends GameWorld
 {
@@ -28,7 +20,7 @@ public class Level2World extends GameWorld
     @Override
     protected void buildLevel()
     {
-        setBackground(buildBackground());
+        setBackground(new GreenfootImage("bg_level2.png"));
 
         // 1. Twinkling stars layered over background (same as Level 1)
         addTwinklingStars(TWINKLE_STAR_COUNT);
@@ -136,12 +128,5 @@ public class Level2World extends GameWorld
                 Greenfoot.getRandomNumber(getWidth()),
                 Greenfoot.getRandomNumber(getHeight()));
         }
-    }
-
-    // ── Background ────────────────────────────────────────────────────────────
-
-    private static GreenfootImage buildBackground()
-    {
-        return new GreenfootImage("bg_level2.png");
     }
 }

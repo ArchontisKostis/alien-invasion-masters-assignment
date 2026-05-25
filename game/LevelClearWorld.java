@@ -4,12 +4,7 @@ import greenfoot.*;
  * LevelClearWorld — brief interstitial shown when a level is cleared.
  *
  * Displays the level-clear message and bonus info, then auto-advances after
- * AUTO_ADVANCE_DELAY acts (~2 s at 60 fps).
- *
- *   completedLevel == 1  →  advance to Level2World
- *   completedLevel == 2  →  advance to Level3World (boss fight)
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §6.
+ * AUTO_ADVANCE_DELAY acts
  */
 public class LevelClearWorld extends World
 {
@@ -50,9 +45,11 @@ public class LevelClearWorld extends World
         if (countdown <= 0) {
             if (completedLevel == 1) {
                 Greenfoot.setWorld(new LoadingWorld(new Level2World()));
-            } else {
+            } else if (completedLevel == 2) {
                 Greenfoot.setWorld(new LoadingWorld(new Level3World()));
             }
+            // completedLevel > 2: Level 3 ends via onBossDefeated() → triggerGameOver(),
+            // not through LevelClearWorld — no branch needed.
         }
     }
 

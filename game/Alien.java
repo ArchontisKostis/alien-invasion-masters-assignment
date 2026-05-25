@@ -3,25 +3,6 @@ import java.util.List;
 
 /**
  * Alien — abstract base class for all alien types (EasyAlien, MidAlien, HardAlien).
- *
- * ── Position model ────────────────────────────────────────────────────────────
- *   Each alien stores its own baseX/baseY — the position it would occupy if the
- *   grid had not moved at all.  AlienGrid calls updateGridPosition(offsetX) every
- *   act, which adds the cumulative horizontal offset to baseX and repositions the
- *   actor.  This keeps movement logic entirely in AlienGrid; Alien is a passive
- *   data holder.
- *
- * ── Animation ────────────────────────────────────────────────────────────────
- *   Two-frame body cycle driven by the grid drop, not a timer:
- *     • frames[0] — default pose
- *     • frames[1] — alternate pose
- *   Frame toggles every time dropOneRow() is called (authentic Space Invaders).
- *
- * ── Death sequence ────────────────────────────────────────────────────────────
- *   die()  →  spawn AlienExplosion  →  play alien_explode.wav
- *          →  notify AlienGrid      →  remove self
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.5.
  */
 public abstract class Alien extends Actor
 {

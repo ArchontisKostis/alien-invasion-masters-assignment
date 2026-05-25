@@ -2,13 +2,6 @@ import greenfoot.*;
 
 /**
  * MidAlien — middle rows (rows 2 & 3), 20 points.
- *
- * Crab-shaped alien (cyan).
- *   Frame 0: claws bent inward/up
- *   Frame 1: claws extended outward
- *
- * NOTE: asset filename is "med_alien_*" (not "mid_alien_*") — matches actual files.
- * Source: original code; follows game1_space_invaders_FINAL.md §7.7.
  */
 public class MidAlien extends Alien
 {

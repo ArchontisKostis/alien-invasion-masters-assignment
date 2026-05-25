@@ -2,9 +2,6 @@ import greenfoot.*;
 
 /**
  * Level3World — final boss fight.
- *
- * Uses bg_intro.png as requested and spawns a single BossAlien target.
- * Defeat the boss to win the game.
  */
 public class Level3World extends GameWorld
 {
@@ -19,7 +16,7 @@ public class Level3World extends GameWorld
     @Override
     protected void buildLevel()
     {
-        setBackground(buildBackground());
+        setBackground(new GreenfootImage("bg_level3.png"));
 
         // Atmosphere layer
         addTwinklingStars(80);
@@ -79,10 +76,5 @@ public class Level3World extends GameWorld
                 Greenfoot.getRandomNumber(getWidth()),
                 Greenfoot.getRandomNumber(getHeight()));
         }
-    }
-
-    private static GreenfootImage buildBackground()
-    {
-        return new GreenfootImage("bg_level3.png");
     }
 }

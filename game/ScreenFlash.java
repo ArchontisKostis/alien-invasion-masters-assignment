@@ -6,12 +6,6 @@ import greenfoot.*;
  *
  * Creates the "screen flash" hit-feedback effect when the player is killed.
  * This is a pure visual actor: it has no collision behaviour and no visible sprite.
- * The effect is baked directly onto the world background image.
- *
- * ── Usage ────────────────────────────────────────────────────────────────────
- *   addObject(new ScreenFlash(), 400, 300);   // position doesn't matter
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.14.
  */
 public class ScreenFlash extends Actor
 {

@@ -2,27 +2,6 @@ import greenfoot.*;
 
 /**
  * PlayerCannon — the player's laser cannon ship.
- *
- * ── Controls ─────────────────────────────────────────────────────────────────
- *   ← Left arrow   Move left  at SPEED px/act
- *   → Right arrow  Move right at SPEED px/act
- *   Space          Fire laser (FIRE_COOLDOWN-act gap between shots)
- *
- * ── Animation ────────────────────────────────────────────────────────────────
- *   2-frame engine-glow cycle:
- *     Frame 0 — exhaust nozzles dark (engine idle)
- *     Frame 1 — exhaust nozzles glow cyan (engine firing)
- *   Frames swap every ANIM_THRESHOLD acts (≈20 fps at 60 fps simulation speed).
- *
- * ── Sprite files ─────────────────────────────────────────────────────────────
- *   Loads ship/player_ship_0.png / ship/player_ship_1.png and scales them to
- *   the 64×36 display size used by the cannon.
- *
- * ── Bounds ───────────────────────────────────────────────────────────────────
- *   Horizontal: X ∈ [X_MIN, X_MAX] = [24, 776] inside an 800-wide world.
- *   Vertical:   Fixed by the world constructor (Y = 540). The cannon never moves up/down.
- *
- * Source: original code; follows game1_space_invaders_FINAL.md §7.2.
  */
 public class PlayerCannon extends SmoothMover
 {

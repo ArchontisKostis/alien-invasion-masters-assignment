@@ -2,9 +2,6 @@ import greenfoot.*;
 
 /**
  * BossAlien — Level 3 boss target.
- *
- * Moves horizontally near the top of the screen, fires alien bullets downward,
- * and can be damaged by PlayerBullet until HP reaches 0.
  */
 public class BossAlien extends Actor
 {

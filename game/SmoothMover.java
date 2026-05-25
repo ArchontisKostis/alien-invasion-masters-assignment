@@ -8,19 +8,11 @@ import greenfoot.*;
  * SmoothMover keeps the "true" position as doubles and only commits the rounded
  * integer to Greenfoot once per act — giving perfectly smooth motion at any speed.
  *
- * ── How to use ───────────────────────────────────────────────────────────────
- *   • Extend SmoothMover instead of Actor.
- *   • Call  move(dx, dy)  inside act() to translate by (dx, dy) pixels.
- *   • Never call setLocation() directly — it desynchronises exactX/exactY.
+ * - How to use
+ *   - Extend SmoothMover instead of Actor.
+ *   - Call  move(dx, dy)  inside act() to translate by (dx, dy) pixels.
+ *   - Never call setLocation() directly — it desynchronises exactX/exactY.
  *     If you must call setLocation() for a teleport, also update exactX/exactY.
- *
- * ── Why it works ─────────────────────────────────────────────────────────────
- *   At speed 1.5 px/act, integer-only movement yields the sequence:
- *     1, 2, 2, 3, 4, 4, 5 …  (alternating 1- and 2-pixel steps → jitter)
- *   SmoothMover accumulates 1.5 each act and rounds: always the nearest pixel,
- *   so the eye perceives one uniform, smooth motion.
- *
- * Source: standard Greenfoot teaching pattern; adapted from course lecture code.
  */
 public abstract class SmoothMover extends Actor
 {

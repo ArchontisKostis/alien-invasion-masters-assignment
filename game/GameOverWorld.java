@@ -3,20 +3,17 @@ import greenfoot.*;
 /**
  * GameOverWorld — the end screen shown after the player wins or loses.
  *
- * ── Win  (win = true)  ────────────────────────────────────────────────────────
+ * ── Win State (win = true)  ────────────────────────────────────────────────────────
  *   Heading:  "EARTH  DEFENDED!" in bright green
- *   Music:    none (transition cue is handled by GameWorld using the real files in sounds/)
  *   Background: bg_intro.png reused (dark space feel)
  *
- * ── Lose (win = false) ────────────────────────────────────────────────────────
+ * ── Lose State (win = false) ────────────────────────────────────────────────────────
  *   Heading:  "GAME  OVER" in bright red
- *   Music:    none (transition cue is handled by GameWorld using the real files in sounds/)
- *   Background: bg_gameover.png (dark red space) or procedural red starfield
+ *   Background: bg_gameover.png
  *
  * ── Controls ─────────────────────────────────────────────────────────────────
  *   R — reset score, return to IntroWorld, start a new game.
  *
- * Source: original code; follows game1_space_invaders_FINAL.md §6.
  */
 public class GameOverWorld extends World
 {
@@ -63,31 +60,14 @@ public class GameOverWorld extends World
         getBackground().drawImage(img, 400 - img.getWidth() / 2, y);
     }
 
-    /** Build the background — PNG if present, procedural fallback otherwise. */
+    /** Build the background */
     private static GreenfootImage buildBackground(boolean win)
     {
         if (win) {
-            try { return new GreenfootImage("bg_intro.png"); } catch (Exception ignored) {}
-        } else {
-            // Loss case: try bg_gameover.png from images/
-            try { return new GreenfootImage("bg_gameover.png"); } catch (Exception ignored) {}
-            try { return new GreenfootImage("raw/bg_gameover.png"); } catch (Exception ignored) {}
-        }
-        GreenfootImage bg = new GreenfootImage(800, 600);
-        bg.setColor(win ? new Color(4, 14, 4) : new Color(18, 3, 3));
-        bg.fill();
-
-        java.util.Random rng = new java.util.Random(win ? 77L : 78L);
-        for (int i = 0; i < 140; i++) {
-            int x = rng.nextInt(800);
-            int y = rng.nextInt(600);
-            int b = 70 + rng.nextInt(100);
-            Color star = win
-                ? new Color(b / 2, b, b / 2)
-                : new Color(b, b / 2, b / 2);
-            bg.setColor(star);
-            bg.fillRect(x, y, 1, 1);
-        }
-        return bg;
+            return new GreenfootImage("bg_intro.png");
+        } 
+        
+        // Loss case: try bg_gameover.png from images/
+        return new GreenfootImage("bg_gameover.png");
     }
 }
