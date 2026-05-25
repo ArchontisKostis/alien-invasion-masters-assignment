@@ -182,8 +182,34 @@ jobs:
 
       - name: Copy assets
         run: |
-          cp -r images build/classes/ || true
-          cp -r sounds build/classes/ || true
+          cp -r game/images build/classes/ || true
+          cp -r game/sounds build/classes/ || true
+          cp -r game/fonts  build/classes/ || true
+
+      - name: Bundle Greenfoot runtime
+        run: |
+          set -euo pipefail
+          # Unzip the extracted greenfoot.jar (API + export classes) into build/classes
+          if [ -f lib/greenfoot.jar ]; then
+            unzip -q lib/greenfoot.jar -d build/classes/ -x 'META-INF/*' || true
+            echo "Extracted lib/greenfoot.jar into build/classes"
+          fi
+          # Also copy the standalone runtime classes from greenfoot-dist.jar;
+          # they live at lib/greenfoot/standalone/ inside the dist jar and map
+          # to the greenfoot.* package when that prefix is stripped.
+          if [ -f lib/greenfoot-dist.jar ]; then
+            mkdir -p tmp_standalone
+            unzip -q lib/greenfoot-dist.jar 'lib/greenfoot/standalone/*' -d tmp_standalone || true
+            if [ -d tmp_standalone/lib/greenfoot/standalone ]; then
+              cp -r tmp_standalone/lib/greenfoot/standalone/. build/classes/
+              echo "Copied standalone runtime classes"
+            fi
+            rm -rf tmp_standalone
+          fi
+
+      - name: Create standalone properties
+        run: |
+          echo "world.class.name=IntroWorld" > build/classes/standalone.properties
 
       - name: Create manifest
         run: |
