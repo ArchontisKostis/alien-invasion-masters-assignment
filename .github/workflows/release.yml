@@ -222,10 +222,30 @@ jobs:
             manifest.txt \
             -C build/classes .
 
+      - name: Download OpenJFX Windows SDK
+        run: |
+          JFXVER=21.0.2
+          curl -fSL \
+            "https://download2.gluonhq.com/openjfx/${JFXVER}/openjfx-${JFXVER}_windows-x64_bin-sdk.zip" \
+            -o javafx-win.zip
+          unzip -q javafx-win.zip
+          mv "javafx-sdk-${JFXVER}" javafx-win
+
+      - name: Create Windows release bundle
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          mkdir -p bundle
+          cp "dist/game-${VERSION}.jar" bundle/game.jar
+          cp -r javafx-win/lib bundle/javafx
+          # Windows line endings required for .bat files
+          printf '@echo off\r\njava --module-path javafx --add-modules ALL-MODULE-PATH -jar game.jar\r\npause\r\n' \
+            > bundle/run.bat
+          (cd bundle && zip -r "../dist/AlienInvasion-${VERSION}-windows.zip" .)
+
       - name: Upload Release Artifact
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
-          files: dist/*.jar
+          files: dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

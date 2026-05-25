@@ -75,7 +75,7 @@ public class PlayerCannon extends SmoothMover
     {
         // Spawn bullet just above the cannon's barrel
         getWorld().addObject(new PlayerBullet(), getX(), getY() - 16);
-        GameWorld.playSound("laser.wav");
+        GameWorld.playSound("laser.mp3");
         canFire           = false;
         fireCooldownTimer = FIRE_COOLDOWN;
     }

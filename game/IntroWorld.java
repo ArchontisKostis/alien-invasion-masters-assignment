@@ -35,7 +35,7 @@ public class IntroWorld extends World
         });
         addObject(prompt, 400, 525);
 
-        bgMusic = new GreenfootSound("music_intro.wav");
+        bgMusic = new GreenfootSound("music_intro.mp3");
     }
 
     public void act()

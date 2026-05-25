@@ -6,14 +6,13 @@ import greenfoot.*;
 public class PlayerBullet extends SmoothMover
 {
     private static final double SPEED = 8.0;   // px/act upward
+    private static final GreenfootImage IMAGE = loadImage();
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
     public PlayerBullet()
     {
-        GreenfootImage img = new GreenfootImage("ship/player_bullet.png");
-        img.scale(8, 28);
-        setImage(img);
+        setImage(IMAGE);
     }
 
     // ── Act ───────────────────────────────────────────────────────────────────
@@ -48,9 +47,16 @@ public class PlayerBullet extends SmoothMover
         // ── Collision: BunkerTile ─────────────────────────────────────────────
         BunkerTile bt = (BunkerTile) getOneIntersectingObject(BunkerTile.class);
         if (bt != null) {
-            bt.damage();                               // plays bunker_hit.wav
+            bt.damage();                               // plays bunker_hit.mp3
             getWorld().removeObject(this);
         }
+    }
+
+    private static GreenfootImage loadImage()
+    {
+        GreenfootImage img = new GreenfootImage("ship/player_bullet.png");
+        img.scale(8, 28);
+        return img;
     }
 
 }

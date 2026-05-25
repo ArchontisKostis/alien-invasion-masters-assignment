@@ -1,6 +1,8 @@
 import greenfoot.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * GameWorld — abstract base class for gameplay levels.
@@ -10,6 +12,15 @@ import java.util.List;
  */
 public abstract class GameWorld extends World
 {
+    private static final Map<String, GreenfootSound> sfxCache = new HashMap<>();
+    private static final GreenfootImage HUD_TILE_START = loadHudTile("ui/score/score_tile_start_left.png");
+    private static final GreenfootImage HUD_TILE_0 = loadHudTile("ui/score/score_tile_0.png");
+    private static final GreenfootImage HUD_TILE_2 = loadHudTile("ui/score/score_tile_2.png");
+    private static final GreenfootImage HUD_TILE_END = loadHudTile("ui/score/score_tile_end_right.png");
+
+    private int lastHudScore = Integer.MIN_VALUE;
+    private int lastHudHighScore = Integer.MIN_VALUE;
+
     // ── UI ────────────────────────────────────────────────────────────────────
 
     /**
@@ -197,43 +208,39 @@ public abstract class GameWorld extends World
      */
     protected void updateHUD()
     {
+        int score = ScoreManager.getScore();
+        int highScore = ScoreManager.getHighScore();
+
+        if (score == lastHudScore && highScore == lastHudHighScore) {
+            return;
+        }
+
         GreenfootImage bg = getBackground();
-        int hudHeight = 32;
         int tileSize = 32;  // Tiles scaled from 64x64 to 32x32
         int bgWidth = getWidth();
 
-        // Load and scale tile images (64x64 → 32x32)
-        GreenfootImage tileStart = new GreenfootImage("ui/score/score_tile_start_left.png");
-        tileStart.scale(tileSize, hudHeight);
-
-        GreenfootImage tile0 = new GreenfootImage("ui/score/score_tile_0.png");
-        tile0.scale(tileSize, hudHeight);
-
-        GreenfootImage tile2 = new GreenfootImage("ui/score/score_tile_2.png");
-        tile2.scale(tileSize, hudHeight);
-
-        GreenfootImage tileEnd = new GreenfootImage("ui/score/score_tile_end_right.png");
-        tileEnd.scale(tileSize, hudHeight);
-
         // Draw left cap
-        bg.drawImage(tileStart, 0, 0);
+        bg.drawImage(HUD_TILE_START, 0, 0);
 
         // Tile the middle section, alternating between tile_0 and tile_2
         int x = tileSize;
         boolean useTile0 = true;
         while (x < bgWidth - tileSize) {
-            bg.drawImage(useTile0 ? tile0 : tile2, x, 0);
+            bg.drawImage(useTile0 ? HUD_TILE_0 : HUD_TILE_2, x, 0);
             x += tileSize;
             useTile0 = !useTile0;  // Alternate tiles
         }
 
         // Draw right cap
-        bg.drawImage(tileEnd, bgWidth - tileSize, 0);
+        bg.drawImage(HUD_TILE_END, bgWidth - tileSize, 0);
 
         // Draw HUD text on top
-        drawHUDText("SCORE: " + String.format("%05d", ScoreManager.getScore()),  10,  7);
-        drawHUDText("HI:    " + String.format("%05d", ScoreManager.getHighScore()), 310, 7);
+        drawHUDText("SCORE: " + String.format("%05d", score),  10,  7);
+        drawHUDText("HI:    " + String.format("%05d", highScore), 310, 7);
         drawHUDText("LEVEL: " + level, 600, 7);
+
+        lastHudScore = score;
+        lastHudHighScore = highScore;
     }
 
     // ── Shared game-event handlers ────────────────────────────────────────────
@@ -264,7 +271,7 @@ public abstract class GameWorld extends World
         }
 
         lives--;
-        playSound("player_hit.wav");
+        playSound("player_hit.mp3");
 
         // Remove rightmost life icon
         if (!lifeIcons.isEmpty()) {
@@ -288,7 +295,7 @@ public abstract class GameWorld extends World
     {
         stopMusic();
         // Play a short level-clear cue only; avoid using full music files
-        playFirstAvailableSound("level_clear.wav");
+        playFirstAvailableSound("level_clear.mp3");
         ScoreManager.addPoints(500 + lives * 100);
         Greenfoot.setWorld(new LevelClearWorld(level));
     }
@@ -303,7 +310,7 @@ public abstract class GameWorld extends World
     {
         stopMusic();
         // Play only short cues here; don't accidentally kick off long music tracks
-        playFirstAvailableSound(win ? "level_clear.wav" : "game_over.wav");
+        playFirstAvailableSound(win ? "level_clear.mp3" : "game_over.mp3");
         Greenfoot.setWorld(new GameOverWorld(ScoreManager.getScore(), win));
     }
 
@@ -330,7 +337,7 @@ public abstract class GameWorld extends World
      * Returns null (silently) if the file is not in the sounds/ folder yet,
      * so development can continue without every asset in place.
      *
-     * @param filename  e.g. "music_level1.wav"
+    * @param filename  e.g. "music_level1.mp3"
      * @return GreenfootSound, or null if the file is missing.
      */
     protected static GreenfootSound loadSound(String filename)
@@ -346,12 +353,29 @@ public abstract class GameWorld extends World
      * Play a one-shot sound effect with SFX volume setting.
      * Silently skips if the file is missing — no NullPointerException.
      *
-     * @param filename  e.g. "laser.wav"
+    * @param filename  e.g. "laser.mp3"
      */
     public static void playSound(String filename)
     {
+        GreenfootSound sound;
+
+        synchronized (sfxCache) {
+            sound = sfxCache.get(filename);
+            if (sound == null && !sfxCache.containsKey(filename)) {
+                try {
+                    sound = new GreenfootSound(filename);
+                } catch (Exception e) {
+                    sound = null;
+                }
+                sfxCache.put(filename, sound);
+            }
+        }
+
+        if (sound == null) {
+            return;
+        }
+
         try {
-            GreenfootSound sound = new GreenfootSound(filename);
             sound.setVolume(Math.max(0, Math.min(100, GameSettings.getSfxVolume())));
             sound.play();
         } catch (Exception e) {
@@ -367,12 +391,27 @@ public abstract class GameWorld extends World
     protected static void playFirstAvailableSound(String... filenames)
     {
         for (String filename : filenames) {
-            try {
-                GreenfootSound sound = new GreenfootSound(filename);
-                sound.setVolume(Math.max(0, Math.min(100, GameSettings.getSfxVolume())));
-                sound.play();
+            GreenfootSound sound;
+
+            synchronized (sfxCache) {
+                sound = sfxCache.get(filename);
+                if (sound == null && !sfxCache.containsKey(filename)) {
+                    try {
+                        sound = new GreenfootSound(filename);
+                    } catch (Exception e) {
+                        sound = null;
+                    }
+                    sfxCache.put(filename, sound);
+                }
+            }
+
+            if (sound != null) {
+                try {
+                    sound.setVolume(Math.max(0, Math.min(100, GameSettings.getSfxVolume())));
+                    sound.play();
+                } catch (Exception ignored) {}
                 return;
-            } catch (Exception ignored) {}
+            }
         }
     }
 
@@ -381,6 +420,13 @@ public abstract class GameWorld extends World
     {
         if (bgMusic != null) BackgroundMusic.stop(bgMusic);
         musicLoopStarted = false;
+    }
+
+    private static GreenfootImage loadHudTile(String filename)
+    {
+        GreenfootImage img = new GreenfootImage(filename);
+        img.scale(32, 32);
+        return img;
     }
 
     private void startMusicLoopIfNeeded()

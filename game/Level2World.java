@@ -47,7 +47,7 @@ public class Level2World extends GameWorld
         updateHUD();
 
         // 8. Background music (starts on Run via GameWorld.started())
-        bgMusic = loadSound("music_level2.wav");
+        bgMusic = loadSound("music_level2.mp3");
 
         // 9. UI overlay (pause menu / settings). MUST be last so it paints on top.
         buildUI();

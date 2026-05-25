@@ -121,7 +121,7 @@ public class BossAlien extends Actor
             w.addObject(new AlienBullet(), getX() + sideXOffset, getY() + sideYOffset);
         }
 
-        GameWorld.playSound("alien_shoot.wav");
+        GameWorld.playSound("alien_shoot.mp3");
     }
 
     private void randomizeShootInterval()
@@ -155,7 +155,7 @@ public class BossAlien extends Actor
         dying = true;
         deathTimer = DEATH_DURATION;
         // play a heavier explosion loop or single cue
-        GameWorld.playSound("alien_explode.wav");
+        GameWorld.playSound("alien_explode.mp3");
         // show one centered boss explosion sprite sequence
         w.addObject(new BossExplosion(), (int)Math.round(logicalX), baseY);
         // ensure boss stops shooting/moving (dying checked in act())

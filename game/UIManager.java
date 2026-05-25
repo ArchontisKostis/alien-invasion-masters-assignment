@@ -9,7 +9,7 @@ public class UIManager extends Actor
 {
     // ── State enum ────────────────────────────────────────────────────────────
 
-    public enum State { HIDDEN, PAUSE, SETTINGS, HOW_TO_PLAY, CREDITS, CHEATS }
+    public enum State { HIDDEN, PAUSE, SETTINGS, HOW_TO_PLAY, CHEATS }
 
     // ── Panel geometry ────────────────────────────────────────────────────────
 
@@ -180,7 +180,6 @@ public class UIManager extends Actor
         switch (state) {
             case SETTINGS:    drawSettingsContent(img);  break;
             case HOW_TO_PLAY: drawHowToPlayContent(img); break;
-            case CREDITS:     drawCreditsContent(img);   break;
             case CHEATS:      drawCheatsContent(img);    break;
             default: break;
         }
@@ -244,30 +243,6 @@ public class UIManager extends Actor
         drawBody(img, "Hard Alien   30 pts",     x, y); y += dy;
     }
 
-    // ── Credits content ───────────────────────────────────────────────────────
-
-    private void drawCreditsContent(GreenfootImage img)
-    {
-        int cx = PNL_CX;
-        int y  = PNL_Y + 68;
-        int dy = 26;
-
-        drawSmallLabel(img, "DEVELOPMENT", cx, y); y += 26;
-        drawBody(img, "Archontis",            cx - 40, y); y += dy;
-        drawBody(img, "Course: Game Design",  cx - 40, y); y += dy + 8;
-
-        drawSmallLabel(img, "GRAPHICS", cx, y); y += 26;
-        drawBody(img, "opengameart.org",      cx - 40, y); y += dy;
-        drawBody(img, "icons8.com",           cx - 40, y); y += dy + 8;
-
-        drawSmallLabel(img, "AUDIO", cx, y); y += 26;
-        drawBody(img, "incompetech.com",      cx - 40, y); y += dy;
-        drawBody(img, "freesound.org",        cx - 40, y); y += dy + 8;
-
-        drawSmallLabel(img, "ENGINE", cx, y); y += 26;
-        drawBody(img, "Greenfoot / Java",     cx - 40, y);
-    }
-
     // ── Cheats content ────────────────────────────────────────────────────────
 
     private void drawCheatsContent(GreenfootImage img)
@@ -303,7 +278,6 @@ public class UIManager extends Actor
             case PAUSE:       buildPauseButtons();    break;
             case SETTINGS:    buildSettingsButtons(); break;
             case HOW_TO_PLAY: buildBackButton(PNL_BOT - 48); break;
-            case CREDITS:     buildBackButton(PNL_BOT - 48); break;
             case CHEATS:      buildCheatsButtons();   break;
             default: break;
         }
@@ -318,7 +292,6 @@ public class UIManager extends Actor
         addBtn("RESUME",      BTN_X, y,       BTN_W, BTN_H, () -> close());           y += dy;
         addBtn("SETTINGS",    BTN_X, y,       BTN_W, BTN_H, () -> switchTo(State.SETTINGS));   y += dy;
         addBtn("HOW TO PLAY", BTN_X, y,       BTN_W, BTN_H, () -> switchTo(State.HOW_TO_PLAY));y += dy;
-        addBtn("CREDITS",     BTN_X, y,       BTN_W, BTN_H, () -> switchTo(State.CREDITS));    y += dy;
         addBtn("CHEATS",      BTN_X, y,       BTN_W, BTN_H, () -> switchTo(State.CHEATS));     y += dy;
         addBtn("QUIT",        BTN_X, y,       BTN_W, BTN_H, () -> quitToIntro());
     }
@@ -463,7 +436,6 @@ public class UIManager extends Actor
             case PAUSE:       return "PAUSED";
             case SETTINGS:    return "SETTINGS";
             case HOW_TO_PLAY: return "HOW TO PLAY";
-            case CREDITS:     return "CREDITS";
             case CHEATS:      return "CHEATS";
             default:          return "";
         }

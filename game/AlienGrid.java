@@ -135,7 +135,7 @@ public class AlienGrid extends Actor
 
         Alien shooter = pickShooterWeighted(aliens);
         getWorld().addObject(new AlienBullet(), shooter.getX(), shooter.getY() + 16);
-        GameWorld.playSound("alien_shoot.wav");
+        GameWorld.playSound("alien_shoot.mp3");
     }
 
     private Alien pickShooterWeighted(List<Alien> aliens)

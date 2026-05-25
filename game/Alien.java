@@ -110,7 +110,7 @@ public abstract class Alien extends Actor
     /**
      * Kill this alien:
      *   1. Spawn a 4-frame AlienExplosion at this location.
-     *   2. Play alien_explode.wav.
+    *   2. Play alien_explode.mp3.
      *   3. Notify AlienGrid so it can decrement its counter and check the win condition.
      *   4. Remove self from the world.
      *
@@ -125,7 +125,7 @@ public abstract class Alien extends Actor
         w.addObject(new AlienExplosion(), x, y);
 
         // 2. Sound
-        GameWorld.playSound("alien_explode.wav");
+        GameWorld.playSound("alien_explode.mp3");
 
         // 3. Notify AlienGrid
         @SuppressWarnings("unchecked")

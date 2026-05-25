@@ -44,7 +44,7 @@ public class BunkerTile extends Actor
     // ── Public API ────────────────────────────────────────────────────────────
 
     /**
-     * Reduce hp by 1, update the tile's colour, play bunker_hit.wav,
+    * Reduce hp by 1, update the tile's colour, play bunker_hit.mp3,
      * and remove the tile if hp reaches 0.
      *
      * Called by AlienBullet and PlayerBullet on intersection.
@@ -52,7 +52,7 @@ public class BunkerTile extends Actor
     public void damage()
     {
         hp--;
-        GameWorld.playSound("bunker_hit.wav");
+        GameWorld.playSound("bunker_hit.mp3");
 
         if (hp <= 0) {
             getWorld().removeObject(this);
