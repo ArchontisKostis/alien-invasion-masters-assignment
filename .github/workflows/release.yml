@@ -104,26 +104,14 @@ jobs:
         run: |
           set -euo pipefail
           if [ -f lib/greenfoot-dist.jar ]; then
-            echo "Repackaging lib/greenfoot-dist.jar contents..."
-            rm -rf tmp_gf || true
-            mkdir -p tmp_gf
-            unzip -q lib/greenfoot-dist.jar -d tmp_gf || true
-            if [ -d tmp_gf/lib/greenfoot ]; then
-              (cd tmp_gf && jar -cf ../greenfoot.jar -C lib greenfoot) || true
-              mv tmp_gf/greenfoot.jar lib/greenfoot.jar || true
-              echo "Created lib/greenfoot.jar"
+            echo "Extracting lib/greenfoot.jar from lib/greenfoot-dist.jar..."
+            if unzip -l lib/greenfoot-dist.jar | grep -q 'lib/greenfoot\.jar'; then
+              unzip -p lib/greenfoot-dist.jar lib/greenfoot.jar > lib/greenfoot.jar
+              echo "Created lib/greenfoot.jar ($(stat -c%s lib/greenfoot.jar) bytes)"
             else
-              echo "tmp_gf/lib/greenfoot not found; attempting to locate any greenfoot dir..."
-              gfdir=$(find tmp_gf -type d -name greenfoot | head -n 1 || true)
-              if [ -n "$gfdir" ]; then
-                parent=$(dirname "$gfdir")
-                (cd "$parent" && jar -cf ../../lib/greenfoot.jar -C . greenfoot) || true
-                echo "Created lib/greenfoot.jar from $gfdir"
-              else
-                echo "No greenfoot directory found in extracted installer; skipping repackaging"
-              fi
+              echo "lib/greenfoot.jar entry not found inside greenfoot-dist.jar" >&2
+              exit 1
             fi
-            rm -rf tmp_gf || true
           else
             echo "lib/greenfoot-dist.jar not present; skipping repackaging"
           fi
