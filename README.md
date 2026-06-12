@@ -6,8 +6,6 @@ Alien Invasion is a Greenfoot Java game made for a master assignment. It is a cl
 
 - `game/` contains the Greenfoot project itself: all Java source files, the `project.greenfoot` config, images, sounds, fonts, and other game assets.
 - `gdd/` contains the game design document and report files for the assignment.
-- `loc_report.csv` is the lines-of-code report.
-- `CHANGELOG.md` tracks notable changes.
 
 ## How To Start
 
