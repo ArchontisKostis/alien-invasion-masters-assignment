@@ -44,8 +44,8 @@ public class AlienGrid extends Actor
      */
     public AlienGrid(int level)
     {
-        baseSpeed    = (level == 1) ? 0.65 : 0.72;
-        speedStep    = (level == 1) ? 0.2  : 0.05;
+        baseSpeed    = (level == 1) ? 0.45 : 0.72;
+        speedStep    = (level == 1) ? 0.12 : 0.05;
         baseInterval = (level == 1) ? 90   : 85;
         minInterval  = (level == 1) ? 35   : 48;
         aggressionMultiplier = (level == 1) ? 0.75 : 0.90;

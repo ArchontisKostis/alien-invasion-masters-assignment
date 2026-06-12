@@ -20,7 +20,9 @@ Alien Invasion is a Greenfoot Java game made for a master assignment. It is a cl
 - Move left/right with the arrow keys.
 - Fire with `SPACE`.
 
-## Notes
+## Instructor & Dev Cheats
 
-- The game includes multiple levels, a score system, lives, sound effects, and a final boss.
-- If the assets do not load correctly, make sure the full `game/` folder is present because the project depends on the images and sounds inside it.
+During gameplay when opening the pause menu (`ESC`) you will see a "CHEATS" option. Click it! It has various useful cheats such as:
+
+- Invicibility
+- Skip Level
