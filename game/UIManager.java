@@ -340,12 +340,6 @@ public class UIManager extends Actor
                () -> { GameSettings.toggleCheatInvincible(); switchTo(State.CHEATS); });
         y += dy;
 
-        addBtn("KILL ALL ALIENS", BTN_X, y, BTN_W, BTN_H, () -> {
-            killAllAliens();
-            switchTo(State.CHEATS);
-        });
-        y += dy;
-
         addBtn("SKIP LEVEL", BTN_X, y, BTN_W, BTN_H, () -> {
             close();
             ((GameWorld) getWorld()).triggerLevelClear();
@@ -389,21 +383,6 @@ public class UIManager extends Actor
             if (btn.getWorld() != null) w.removeObject(btn);
         }
         activeButtons.clear();
-    }
-
-    // ── Cheat: kill all aliens ────────────────────────────────────────────────
-
-    @SuppressWarnings("unchecked")
-    private void killAllAliens()
-    {
-        World w = getWorld();
-        if (w == null) return;
-        java.util.List<Alien> aliens =
-            (java.util.List<Alien>) w.getObjects(Alien.class);
-        // Work on a copy to avoid ConcurrentModificationException
-        for (Alien a : new java.util.ArrayList<>(aliens)) {
-            if (a.getWorld() != null) a.die();
-        }
     }
 
     // ── Music volume application ──────────────────────────────────────────────
