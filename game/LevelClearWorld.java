@@ -13,6 +13,8 @@ public class LevelClearWorld extends World
     private int countdown;
     private final int completedLevel;
 
+    private Actor countdownLabel;
+
     // ── Constructor ───────────────────────────────────────────────────────────
 
     public LevelClearWorld(int completedLevel)
@@ -29,6 +31,22 @@ public class LevelClearWorld extends World
             new Color(210, 215, 230), 286);
         drawCentred("Bonus:  500 pts  +  100 per remaining life", 18,
             new Color(255, 255, 100), 334);
+
+        PulsePrompt prompt = new PulsePrompt(
+            "►  Press SPACE to Continue  ◄", 22,
+            new Color(210, 215, 230),
+            90, 80, 255);
+        prompt.setActivationKey("space");
+        prompt.setOnActivate(new PulsePrompt.OnActivate() {
+            public void onActivate() {
+                countdown = 0;
+            }
+        });
+        addObject(prompt, 400, 430);
+
+        countdownLabel = new Actor() { };
+        addObject(countdownLabel, 400, 470);
+        updateCountdownLabel();
     }
 
     // ── act ───────────────────────────────────────────────────────────────────
@@ -36,12 +54,10 @@ public class LevelClearWorld extends World
     @Override
     public void act()
     {
-        // Allow player to skip the wait by pressing SPACE or ENTER.
-        if (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("enter")) {
-            countdown = 0;
-        }
-
+        // Skipping is handled by the PulsePrompt actor (SPACE), which arms
+        // against a key held over from the level. Otherwise auto-advance.
         countdown--;
+        updateCountdownLabel();
         if (countdown <= 0) {
             if (completedLevel == 1) {
                 Greenfoot.setWorld(new LoadingWorld(new Level2World()));
@@ -54,6 +70,15 @@ public class LevelClearWorld extends World
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private void updateCountdownLabel()
+    {
+        int secs = Math.max(0, (countdown + 59) / 60);   // acts → ceil seconds
+        GreenfootImage img = new GreenfootImage(
+            "Next level in " + secs, 16,
+            new Color(150, 160, 180), new Color(0, 0, 0, 0));
+        countdownLabel.setImage(img);
+    }
 
     private void drawCentred(String text, int size, Color colour, int y)
     {
