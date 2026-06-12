@@ -15,7 +15,7 @@ Alien Invasion is a Greenfoot Java game made as part of an assignment of the cou
 
 ## Controls
 
-- Move left/right with the `w`,`a`,`s`,`d` keys.
+- Move left/right with the arrow keys.
 - Fire with `SPACE`.
 
 ## Instructor & Dev Cheats
