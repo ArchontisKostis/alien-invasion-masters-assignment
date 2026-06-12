@@ -67,8 +67,9 @@ public class IntroWorld extends World
         String[] lines = {
             "Defend Earth from the alien fleet!",
             "",
-            "Move:  LEFT / RIGHT arrow keys",
-            "Fire:  SPACE bar",
+            "Move:   LEFT / RIGHT arrow keys",
+            "Fire:   SPACE bar",
+            "Pause:  ESC key",
             "",
             "You have 3 lives.  Lose them all and it's Game Over.",
             "Destroy all aliens to advance to Level 2.",
