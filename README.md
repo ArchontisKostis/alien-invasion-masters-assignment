@@ -1,6 +1,6 @@
 # Alien Invasion
 
-Alien Invasion is a Greenfoot Java game made for a master assignment. It is a classic arcade-style space shooter where you defend Earth, clear levels, and face a boss battle.
+Alien Invasion is a Greenfoot Java game made as part of an assignment of the course "Serious Games Design & Development" for my Master. It is a classic arcade-style space shooter where you defend Earth, clear levels, and face a boss battle.
 
 ## Project Layout
 
