@@ -76,7 +76,26 @@ public class IntroWorld extends World
             "Score:   Easy Alien 10 pts  |  Mid Alien 20 pts  |  Hard Alien 30 pts"
         };
 
-        int y = 228;
+        final int top = 218;
+
+        // Measure the block so the backing panel hugs the text. Without a panel
+        // the light text washes out against the bright nebula in bg_intro.png.
+        int blockHeight = 0;
+        for (String line : lines) {
+            blockHeight += line.isEmpty() ? 14 : 28;
+        }
+
+        // Semi-transparent dark panel for guaranteed contrast.
+        int panelX = 90, panelW = 620;
+        int panelY = top - 16, panelH = blockHeight + 28;
+        GreenfootImage panel = new GreenfootImage(panelW, panelH);
+        panel.setColor(new Color(10, 12, 28, 165));
+        panel.fillRect(0, 0, panelW, panelH);
+        panel.setColor(new Color(120, 130, 200, 110));
+        panel.drawRect(0, 0, panelW - 1, panelH - 1);
+        getBackground().drawImage(panel, panelX, panelY);
+
+        int y = top;
         for (String line : lines) {
             if (line.isEmpty()) {
                 y += 14;
@@ -85,7 +104,7 @@ public class IntroWorld extends World
 
             GreenfootImage txt = new GreenfootImage(
                 line, 17,
-                new Color(210, 215, 230),
+                new Color(235, 240, 250),
                 new Color(0, 0, 0, 0));
             getBackground().drawImage(txt, 400 - txt.getWidth() / 2, y);
             y += 28;
