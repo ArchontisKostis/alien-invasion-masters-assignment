@@ -37,6 +37,10 @@ public class PulsePrompt extends Actor
     public void setActivationKey(String key)
     {
         this.activationKey = key;
+        // Seed the edge-detector with the key's current state so a key already
+        // held when this prompt appears (e.g. firing carried over from a level)
+        // must be released before it can activate.
+        this.prevKeyDown = (key != null) && Greenfoot.isKeyDown(key);
     }
 
     public void setOnActivate(OnActivate l)
