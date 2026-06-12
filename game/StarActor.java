@@ -8,13 +8,27 @@ import greenfoot.*;
  * Size: randomly 1×1 or 2×2 px.
  * Alpha oscillates between 60 and 255 using a sine wave.
  *
+ * Performance note: instead of building a new GreenfootImage every act() (which
+ * generated ~50 allocations per frame and stuttered the browser/Gallery runtime
+ * via garbage collection), each star pre-builds a small set of alpha-stepped
+ * images ONCE in the constructor. act() then just swaps to the nearest
+ * pre-built frame — zero per-frame allocation. The twinkle is quantised into
+ * {@link #ALPHA_STEPS} brightness levels rather than perfectly smooth, which is
+ * imperceptible at this size.
  */
 public class StarActor extends Actor
 {
+    /** Number of pre-built brightness levels per star (alpha 60 → 255). */
+    private static final int ALPHA_STEPS = 16;
+
     private double phase;      // current position in twinkle cycle (0–2π)
     private double speed;      // how fast this star twinkles
-    private int size;          // 1 or 2 px
-    private int r, g, b;       // star colour components
+
+    /** Pre-built images, one per brightness level (index 0 = dimmest). */
+    private GreenfootImage[] frames;
+
+    /** Index of the frame currently shown, so we only setImage() on change. */
+    private int currentFrame = -1;
 
     public StarActor()
     {
@@ -28,29 +42,45 @@ public class StarActor extends Actor
 
         int min = Math.max(1, Math.min(minSize, maxSize));
         int max = Math.max(min, Math.max(minSize, maxSize));
-        size = min + Greenfoot.getRandomNumber(max - min + 1);
+        int size = min + Greenfoot.getRandomNumber(max - min + 1);
 
         // Pale white / blue-white / yellow-white variety
-        r = 200 + Greenfoot.getRandomNumber(56);
-        g = 200 + Greenfoot.getRandomNumber(56);
-        b = 200 + Greenfoot.getRandomNumber(56);
+        int r = 200 + Greenfoot.getRandomNumber(56);
+        int g = 200 + Greenfoot.getRandomNumber(56);
+        int b = 200 + Greenfoot.getRandomNumber(56);
 
-        updateImage(255);
+        buildFrames(size, r, g, b);
+        setImage(frames[ALPHA_STEPS - 1]);            // start at full brightness
+        currentFrame = ALPHA_STEPS - 1;
     }
 
     public void act()
     {
         phase += speed;
-        // Alpha oscillates between 60 and 255
-        int alpha = 60 + (int)(195 * (0.5 + 0.5 * Math.sin(phase)));
-        updateImage(alpha);
+        // Sine maps to 0..1, then to a frame index. Alpha oscillates 60..255
+        // across the pre-built frames.
+        double brightness = 0.5 + 0.5 * Math.sin(phase);
+        int frame = (int)Math.round(brightness * (ALPHA_STEPS - 1));
+
+        if (frame != currentFrame) {
+            setImage(frames[frame]);
+            currentFrame = frame;
+        }
     }
 
-    private void updateImage(int alpha)
+    /**
+     * Build the ALPHA_STEPS images once. Frame i uses an alpha linearly
+     * interpolated between 60 (dimmest) and 255 (brightest).
+     */
+    private void buildFrames(int size, int r, int g, int b)
     {
-        GreenfootImage img = new GreenfootImage(size, size);
-        img.setColor(new Color(r, g, b, alpha));
-        img.fill();
-        setImage(img);
+        frames = new GreenfootImage[ALPHA_STEPS];
+        for (int i = 0; i < ALPHA_STEPS; i++) {
+            int alpha = 60 + (int)((195.0 * i) / (ALPHA_STEPS - 1));
+            GreenfootImage img = new GreenfootImage(size, size);
+            img.setColor(new Color(r, g, b, alpha));
+            img.fill();
+            frames[i] = img;
+        }
     }
 }
